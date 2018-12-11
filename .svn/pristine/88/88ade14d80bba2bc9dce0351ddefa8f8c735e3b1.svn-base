@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    >
+
+    <include layout="@layout/activity_title" />
+    <TextView
+        android:layout_below="@+id/ly_main_tab_bottom"
+        android:id="@+id/title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:text="借阅完成"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:background="#ffffff"/>
+    <com.tc.nfc.app.view.AnimatedExpandableListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_tv">
+
+    </com.tc.nfc.app.view.AnimatedExpandableListView>
+
+</RelativeLayout>

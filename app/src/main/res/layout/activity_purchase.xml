@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d7d9e0"
+    tools:context="com.tc.nfc.app.activity.PurchaseActivity">
+
+    <include layout="@layout/activity_title" />
+    <ScrollView
+        android:layout_below="@+id/ly_main_tab_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:padding="5dp"
+        android:fillViewport="false">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.tc.nfc.app.view.MaxListView
+                android:id="@+id/purchaseListview1"
+                android:background="#FFF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="#00000000">
+
+            </com.tc.nfc.app.view.MaxListView>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginTop="4dp"
+                android:layout_below="@+id/purchaseListview1"
+                android:background="#FFF">
+
+            </android.support.v4.view.ViewPager>
+            <LinearLayout
+                android:id="@+id/purchaseL2"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/viewPager"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_marginTop="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#ff7742"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="馆藏:"
+                        android:textColor="#FFF"
+                        android:textSize="15sp"/>
+                    <TextView
+                        android:id="@+id/library"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" "
+                        android:textColor="#FFF"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:background="#ff7742"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="订购:"
+                        android:textColor="#FFF"
+                        android:textSize="15sp"/>
+                    <TextView
+                        android:id="@+id/purchase"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" "
+                        android:layout_marginLeft="5dp"
+                        android:textColor="#FFF"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:background="#ff7742"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="外借:"
+                        android:textColor="#FFF"
+                        android:textSize="15sp"/>
+                    <TextView
+                        android:id="@+id/loan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" "
+                        android:layout_marginLeft="5dp"
+                        android:textColor="#FFF"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="1dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#ff7742"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="荐购:"
+                        android:textColor="#FFF"
+                        android:textSize="15sp"/>
+                    <TextView
+                        android:id="@+id/hotsell"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" "
+                        android:layout_marginLeft="5dp"
+                        android:textColor="#FFF"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+            </LinearLayout>
+            <com.tc.nfc.app.view.MaxListView
+                android:layout_marginTop="4dp"
+                android:id="@+id/purchaseListview2"
+                android:background="#FFF"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/purchaseL2"
+                android:layout_alignParentBottom="true"
+                android:divider="#00000000">
+
+            </com.tc.nfc.app.view.MaxListView>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

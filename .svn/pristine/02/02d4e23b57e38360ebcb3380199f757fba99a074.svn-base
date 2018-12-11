@@ -1,0 +1,16 @@
+package com.tc.nfc.core.interfaces;
+
+import android.app.Activity;
+import android.content.Context;
+
+import com.tc.nfc.core.listener.ActionCallbackListener;
+
+/**
+ * Created by tangjiarao on 16/6/23.
+ */
+public interface CommonAction {
+    public void isHasNFC(ActionCallbackListener<Void> listener);
+    public void NFCPrepar(Context context);
+    public void NFCDisableForeground(Activity activity);
+    public void NFCEnableForeground(Activity activity);
+}

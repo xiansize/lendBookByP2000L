@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+          <meta charset="UTF-8" />
+    <!-- 视口标签 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <!-- 删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- 设置苹果工具栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+    <meta name="format-detection" content="telphone=no, email=no" />
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+	<script src="script/zepto.js" type="text/javascript"></script>
+	<script src="script/event.js" type="text/javascript"></script>
+	<script src="script/touch.js" type="text/javascript"></script>
+    <script src="script/bgResponse.js" type="text/javascript"></script>
+    <script type="text/javascript" src="script/index.js" ></script>
+    <script type="text/javascript">
+            var id,id2;
+            window.onload=function(){
+              var loc = location.href;
+              var n1 = loc.length;//地址的总长度
+              var n2 = loc.indexOf("=");//取得=号的位置
+              var n3 = loc.indexOf("&");
+              id = loc.substr(n2+1, n3-n2-1);//从=号后面的内容
+              var loc2 =loc.substr(n3+1, n1-n3-1);
+              var n4 = loc2.indexOf("=");
+              id2 = loc2.substr(n4+1, n1-n4);
+              $("#phone").html(id);
+            }
+            function test(){
+                alert(id+" "+id2);
+                
+                $.ajax({
+                       //提交数据的类型 POST GET
+                       type:'get',
+                       //提交的网址
+                       url:'http://172.27.35.5:5000/submit?phone=123&email=1233',
+            
+                       //返回数据的格式
+                       dataType:'jsonp',
+                       processData: false,
+                       //成功返回之后调用的函数
+                       success:function(data){
+                            alert(data);
+                       }
+                     
+                });
+            }
+
+    </script>
+    <title>使用反馈</title>
+    </head>
+    <body>
+            <div class="wrap">
+				<section class="container">
+					<div class="content-area feedcon">
+						<form action="" method="post">
+							<div class="fdback-phone">
+								<p class="userphone"><span class="phone-tit">手机号：</span><span id="phone">13624587996</span></p>
+							</div>
+							<textarea name="feedcon-in" class="feedcon-in" rows="" cols=""></textarea>
+							<div class="confirm-btn">
+								<!--<input type="submit" value="确定"/>-->
+								<a class="confirm" onclick="test()">确定</a>
+							</div>
+
+						</form>
+					</div>
+				</section>
+				 	 <!-- 遮罩层 -->
+  						<div class="mask"></div>
+  						<!--弹出框-->
+  						<!--提交成功-->
+  						<div class="subsuc">
+  							<div class="subsuctop">
+  								<span class="sucbefore">提交成功！</span>
+						        <p>感谢你对我们的支持！</p>
+						        <p>有任何消息将第一时间通知你！</p>
+
+  							</div>
+  							<div class="subsucbot">
+  								<p class="secconfirm">确定</p>
+  							</div>
+  						</div>
+  						<!--提交失败-->
+  						<div class="subfail">
+  							<div class="subsuctop">
+  								<span class="failbefore">提交失败！</span>
+						        <p>对不起，你填写的内容提交失败，请重新提交。</p>
+  							</div>
+  							<div class="subsucbot">
+  								<p class="secconfirm">确定</p>
+  							</div>
+  						</div>
+           </div>
+	     <script type="text/javascript">
+	         $(".container").bgresponse({
+	            bgWidth:720,
+	            bgHeight:1144
+	         });
+	        </script>
+    </body>
+</html>
+
+
+    
+   

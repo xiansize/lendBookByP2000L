@@ -1,0 +1,385 @@
+package com.tc.nfc.app.activity;
+
+import android.content.Intent;
+import android.nfc.NfcAdapter;
+import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.animation.Animation;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.tc.nfc.R;
+import com.tc.nfc.app.adapter.BookLoanRecyclerAdapter;
+import com.tc.nfc.app.utils.NFCApplication;
+import com.tc.nfc.app.utils.NfcVUtil;
+import com.tc.nfc.app.view.DividerItemDecoration;
+import com.tc.nfc.app.view.LoadingView;
+import com.tc.nfc.app.view.SlideFromBottomPopup;
+import com.tc.nfc.core.listener.ActionCallbackListener;
+import com.tomergoldst.tooltips.ToolTip;
+import com.tomergoldst.tooltips.ToolTipsManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+public class ReturnActivity extends BaseActivity implements View.OnClickListener{
+
+    private final String TAG ="ReturnActivity";
+    public NFCApplication mNFCApplication;
+    private ReturnActivity that;
+    private RelativeLayout relativeLayout;
+    private LinearLayout layout = null;
+    private View view;
+    private TextView titleTV,operaTV;
+    private LinearLayout backImage;
+
+    //图书条形码
+    private String Barcode;
+
+    //数据与适配器、列表
+    private List<Map<String, Object>> mdatas;
+    private RecyclerView recyclerView;
+    private BookLoanRecyclerAdapter recycleAdapter;
+
+    //messageWindow管理
+    ToolTipsManager mToolTipsManager;
+    ToolTip.Builder builder=null;
+    //上一被选择按钮的数据
+    private Map<String, Object> lastData =null;
+
+    //loading
+    private LoadingView loadingView =null;
+
+    //标志是否正在还书，如果正在还书，则即使扫描到条码也不操作
+    private boolean IS_DO_ACTIO=false;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initViews();
+
+    }
+
+    @Override
+    protected void initContentView(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_scan);
+        mNFCApplication =(NFCApplication)this.getApplication();
+
+    }
+
+    /**
+     * 初始化
+     */
+    public void initViews(){
+
+        titleTV =(TextView)findViewById(R.id.title);
+        titleTV.setText(R.string.returnbook);
+        operaTV =(TextView)findViewById(R.id.operaText);
+        operaTV.setText("请扫描图书");
+        backImage = (LinearLayout)findViewById(R.id.backbutton);
+        backImage.setOnClickListener(this);
+        layout =(LinearLayout)findViewById(R.id.trendLayout);
+        relativeLayout =(RelativeLayout)findViewById(R.id.haha);
+        mdatas =new ArrayList<>();
+        that=this;
+        mToolTipsManager = new ToolTipsManager();
+
+        loadingView =new LoadingView(this);
+    }
+
+    /**
+     * 接受NFC请求
+     * @param intent
+     */
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(intent.getAction())) {
+            processIntent(intent);
+
+        }
+    }
+
+    /**
+     * 处理NFC请求
+     * @param intent
+     */
+    private void processIntent(Intent intent) {
+        //1.解析获取Barcode
+        Barcode = mNFCApplication.getBookAction().getNFCBarcode(intent);
+        Boolean isChangeNfc=false;
+        try {
+            isChangeNfc=NfcVUtil.writeAFI(false);
+            Log.d("JSON","还书标识位为:"+isChangeNfc);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (Barcode!=null&&isChangeNfc&&!IS_DO_ACTIO){
+            returnBook();
+        }
+    }
+
+    public void setListener(){
+        recycleAdapter.setAdapterListener(new BookLoanRecyclerAdapter.CheckOnClickListener() {
+
+            public void onClick(View v, int position, Map<String, Object> data) {
+                //改变按钮选中状态
+                Boolean isCheck = !(boolean) data.get("isCheck");
+
+                closeMessageWindow();
+                //判断当前按钮状态，如果为true被点击则新建message框
+                if (isCheck) {
+
+                    builder = new ToolTip.Builder(that, v, relativeLayout
+                            , data.get("message").toString(), ToolTip.POSITION_ABOVE);
+                    builder.setGravity(ToolTip.GRAVITY_CENTER);
+                    builder.setAlign(ToolTip.ALIGN_RIGHT);
+
+                    mToolTipsManager.show(builder.build());
+                    data.put("isCheck", isCheck);
+                    lastData = data;
+                }
+            }
+
+            //当adapter被刷新时关闭message框并且改变状态
+            public void reFresh() {
+                closeMessageWindow();
+            }
+        });
+    }
+
+    public void returnBook(){
+
+        appearShade();
+        mNFCApplication.getBookAction().returnBook(Barcode, new ActionCallbackListener<String>() {
+
+            @Override
+            public void onSuccess(String data) {
+
+                try {
+
+                    JSONObject json = new JSONObject(data);
+                    judgeResult(Barcode, json);
+
+                } catch (JSONException e) {
+
+                    e.printStackTrace();
+                    try {
+                        NfcVUtil.writeAFI(true);
+                    } catch (IOException e1) {
+                        e.printStackTrace();
+                    }
+                } finally {
+                    disappearShade();
+                }
+            }
+
+            @Override
+            public void onFailure(String errorEvent, String message) {
+                Toast toast = Toast.makeText(that, "连接服务器失败", Toast.LENGTH_SHORT);
+                toast.show();
+                disappearShade();
+            }
+        });
+    }
+
+    /**
+     * 生成recyclerView
+     */
+    public void changeView(){
+
+        if(view==null){
+            layout.removeView(operaTV);
+
+            operaTV.setVisibility(View.INVISIBLE);
+            LayoutInflater flater = LayoutInflater.from(this);
+
+            view = flater.inflate(R.layout.view_list, null);
+            recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+
+            recycleAdapter= new BookLoanRecyclerAdapter(this, mdatas);
+
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+            //设置布局管理器
+            recyclerView.setLayoutManager(layoutManager);
+            //设置为垂直布局，这也是默认的
+            layoutManager.setOrientation(OrientationHelper.VERTICAL);
+            //设置Adapter
+            recyclerView.setAdapter(recycleAdapter);
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    closeMessageWindow();
+                }
+            });
+            //设置增加或删除条目的动画
+            recyclerView.setItemAnimator(new DefaultItemAnimator());
+            recyclerView.addItemDecoration(new DividerItemDecoration(this,
+                    DividerItemDecoration.VERTICAL_LIST));
+
+            layout.addView(view);
+            setListener();
+
+        }
+
+    }
+
+    /**
+     * 判断借书结果
+     * @param Barcode
+     * @param json
+     */
+    public void judgeResult(String Barcode, JSONObject json){
+
+        changeView();
+        Map<String, Object> data =new HashMap<>();
+
+        try{
+            data.put("barcode", Barcode);
+            data.put("isCheck",false);
+            data.put("message",json.getString("message"));
+            if (json.getString("success").equals("true")){
+
+                //{"success":"true","message":"图书 Java 2编程起步[04400696200827]已于:20160718归还 应还日期：2016-09-16"}
+                data.put("LoanResult",true);
+            }
+            else{
+                //{"success":"false","message":"条码[0359307]无对应外借记录,不能进行还回！"}
+                data.put("LoanResult", false);
+
+            }
+            /**
+             * 如果该借阅号并未操作过，则新增一条
+             */
+            if (!isExistData(data)){
+
+                addData(data);
+            }
+
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 判断借阅号是否存在
+     * @param data
+     * @return
+     */
+    public boolean isExistData(Map<String, Object> data){
+
+        for (int i=0;i<mdatas.size();i++){
+
+            if (mdatas.get(i).get("barcode").equals(data.get("barcode"))) {
+                mdatas.set(i, data);
+                recycleAdapter.notifyDataSetChanged();
+                closeMessageWindow();
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
+     * 为列表增加一行数据
+     * @param data
+     */
+    public void addData( Map<String, Object> data) {
+
+        mdatas.add(0,data);
+        recycleAdapter.notifyItemInserted(0);
+        recycleAdapter.notifyItemRangeChanged(0, data.size());
+        //recycleAdapter.notifyDataSetChanged();
+        recyclerView.smoothScrollToPosition(0);
+    }
+
+    /**
+     * 关闭MessageWindow
+     */
+    public void closeMessageWindow(){
+        //如果该页面上有message框则关闭，并改变打开message框的data的按钮状态为false
+        if (builder != null) {
+            mToolTipsManager.findAndDismiss(builder.build().getAnchorView());
+            //改变打开message框的data的按钮状态
+            lastData.put("isCheck", false);
+            builder = null;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.backbutton:
+                //显示窗口
+                new SlideFromBottomPopup(this,this).showPopupWindow();
+
+                break;
+
+            case R.id.other_btn:
+                //startActivity(MainActivity.class);
+                this.finish();
+                break;
+
+            case R.id.change_btn:
+
+                startActivity(CheckReaderActivity.class);
+                this.finish();
+                break;
+        }
+    }
+
+    /**
+     * 取消loading
+     */
+    public void disappearShade(){
+
+        loadingView.startDisappearAnimation();
+        loadingView.getDisappearAnimation().setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                relativeLayout.removeView(loadingView);
+                IS_DO_ACTIO=false;
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+
+            }
+        });
+    }
+
+    public void appearShade(){
+        IS_DO_ACTIO=true;
+        relativeLayout.addView(loadingView);
+        loadingView.startAppearAnimation();
+    }
+    /**
+     * 跳转页面
+     * @param activityClass 目标页面Class
+     */
+    public void startActivity(Class activityClass){
+        Intent intent = new Intent();
+        intent.setClass(this, activityClass);
+        startActivity(intent);
+    }
+
+}

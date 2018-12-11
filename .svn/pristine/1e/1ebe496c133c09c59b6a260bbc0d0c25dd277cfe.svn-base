@@ -1,0 +1,58 @@
+[
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-ldpi-v4/abc_ic_ab_back_material.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/generated/res/pngs/api1/debug/drawable-ldpi/abc_ic_ab_back_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-ldpi-v4/abc_ic_search_api_material.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/generated/res/pngs/api1/debug/drawable-ldpi/abc_ic_search_api_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-ldpi-v4/abc_ic_voice_search_api_material.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/generated/res/pngs/api1/debug/drawable-ldpi/abc_ic_voice_search_api_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-ldpi-v4/abc_ic_ab_back_material.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/generated/res/pngs/api1/debug/drawable-ldpi/abc_ic_ab_back_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-ldpi-v4/abc_ic_clear_material.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/generated/res/pngs/api1/debug/drawable-ldpi/abc_ic_clear_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-ldpi-v4/abc_ic_search_api_material.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/generated/res/pngs/api1/debug/drawable-ldpi/abc_ic_search_api_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-ldpi-v4/abc_ic_menu_overflow_material.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/generated/res/pngs/api1/debug/drawable-ldpi/abc_ic_menu_overflow_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-ldpi-v4/abc_ic_arrow_drop_right_black_24dp.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/generated/res/pngs/api1/debug/drawable-ldpi/abc_ic_arrow_drop_right_black_24dp.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-ldpi-v4/abc_ic_clear_material.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/generated/res/pngs/api1/debug/drawable-ldpi/abc_ic_clear_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-ldpi-v4/abc_ic_arrow_drop_right_black_24dp.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/generated/res/pngs/api1/debug/drawable-ldpi/abc_ic_arrow_drop_right_black_24dp.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-ldpi-v4/abc_ic_voice_search_api_material.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/generated/res/pngs/api1/debug/drawable-ldpi/abc_ic_voice_search_api_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-ldpi-v4/abc_ic_go_search_api_material.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/generated/res/pngs/api1/debug/drawable-ldpi/abc_ic_go_search_api_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-ldpi-v4/abc_ic_menu_overflow_material.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/generated/res/pngs/api1/debug/drawable-ldpi/abc_ic_menu_overflow_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-ldpi-v4/abc_ic_go_search_api_material.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/generated/res/pngs/api1/debug/drawable-ldpi/abc_ic_go_search_api_material.png"
+    }
+]

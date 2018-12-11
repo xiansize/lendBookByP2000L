@@ -1,0 +1,209 @@
+package com.tc.nfc.app.fragment;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.tc.api.versionSetting;
+import com.tc.nfc.R;
+import com.tc.nfc.api.utils.Constant;
+import com.tc.nfc.app.activity.LoanActivity;
+import com.tc.nfc.app.activity.LoginActivity;
+import com.tc.nfc.app.activity.CheckReaderActivity;
+import com.tc.nfc.app.activity.ReLoanActivity;
+import com.tc.nfc.app.activity.ReturnActivity;
+import com.tc.nfc.app.utils.App;
+import com.tc.nfc.app.view.popupwindow.LogoutWindow;
+
+
+
+public class IndexFragment extends Fragment implements OnClickListener {
+
+	private final String TAG ="IndexFragment";
+	private View view;
+	private LinearLayout loanLayout,returnLayout,renewLayout,ownLayout;
+
+	//操作员模式下显示的读者menu
+	private RelativeLayout readerMenu;
+	private TextView readerId,readerName;
+	//logout 按钮
+	private LogoutWindow logoutWindow;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		view = inflater.inflate(R.layout.fragment_index, container, false);
+		initView();
+		setListener();
+		return view;
+	}
+
+	/**
+	 * 初始化
+	 */
+	public void initView(){
+
+		loanLayout =(LinearLayout)view.findViewById(R.id.loanLayout);
+		renewLayout =(LinearLayout)view.findViewById(R.id.renewLayout);
+		ownLayout =(LinearLayout)view.findViewById(R.id.ownLayout);
+
+		loanLayout.setVisibility(View.VISIBLE);
+		renewLayout.setVisibility(View.VISIBLE);
+		ownLayout.setVisibility(View.VISIBLE);
+		//如果不是管理员模式
+		if (versionSetting.IS_ASMIN){
+			returnLayout =(LinearLayout)view.findViewById(R.id.returnLayout);
+			readerMenu=(RelativeLayout)view.findViewById(R.id.readerMenu);
+			readerMenu.setOnClickListener(this);
+			readerId =(TextView)view.findViewById(R.id.readerIdTv);
+			readerName =(TextView)view.findViewById(R.id.readerNameTv);
+			returnLayout.setVisibility(View.VISIBLE);
+			readerMenu.setVisibility(View.INVISIBLE);
+
+		}
+	}
+
+	/**
+	 * 设置监听
+	 */
+	public void setListener(){
+		loanLayout.setOnClickListener(this);
+		renewLayout.setOnClickListener(this);
+		ownLayout.setOnClickListener(this);
+		if (versionSetting.IS_ASMIN){
+			returnLayout.setOnClickListener(this);
+		}
+
+	}
+
+	@Override
+	public void onClick(View v) {
+
+		switch (v.getId()) {
+			case R.id.loanLayout:
+				if (isExistReader(Constant.LOAN_ACTION))
+					startActivity(LoanActivity.class);
+				break;
+			case R.id.returnLayout:
+				if (isExistReader(Constant.RETURN_ACTION))
+					startActivity(ReturnActivity.class);
+				break;
+			case R.id.renewLayout:
+				if (isExistReader(Constant.RELOAN_ACTION))
+					startActivity(ReLoanActivity.class);
+				break;
+			case R.id.ownLayout:
+
+				break;
+			case R.id.readerMenu:
+
+				showLogoutWindow(v);
+				break;
+			case R.id.logoutbt:
+				readerLogout();
+				break;
+
+		}
+
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		Log.d(TAG, TAG + " onPause");
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		Log.d(TAG, TAG + " onResume");
+		if (versionSetting.IS_ASMIN){
+			isShowReaderMenu();
+		}
+
+	}
+
+	/**
+	 * 跳转页面
+	 * @param activityClass 目标页面Class
+	 */
+	public void startActivity(Class activityClass){
+		Intent intent = new Intent();
+		intent.setClass(getActivity(), activityClass);
+		startActivity(intent);
+	}
+
+	/**
+	 * 跳转到登录页面
+ 	 */
+	public void login() {
+		Intent intent = new Intent();
+		intent.setClass(getActivity(), LoginActivity.class);
+		startActivity(intent);
+	}
+
+	/**
+	 * 显示logout按钮
+	 * @param v 被依赖的View
+	 */
+	private void showLogoutWindow(View v){
+
+		LayoutInflater flater = LayoutInflater.from(this.getActivity());
+		view = flater.inflate(R.layout.view_logot, null);
+		LinearLayout logoutbt = (LinearLayout)view.findViewById(R.id.logoutbt);
+		logoutWindow = new LogoutWindow(view,ViewGroup.LayoutParams.MATCH_PARENT,
+				ViewGroup.LayoutParams.WRAP_CONTENT);
+
+		logoutWindow.showWindow(v);
+		logoutbt.setOnClickListener(this);
+
+	}
+
+	/**
+	 * 判断是否显示读者信息菜单
+	 */
+	private void isShowReaderMenu(){
+		if (App.readerId!=null&&App.readerName!=null){
+			readerMenu.setVisibility(View.VISIBLE);
+			readerId.setText(App.readerId);
+			readerName.setText(App.readerName);
+		}
+	}
+
+	/**
+	 * logout 按钮操作
+	 */
+	private void readerLogout(){
+
+		logoutWindow.dismiss();
+		logoutWindow=null;
+		App.readerName=null;
+		App.readerId=null;
+		readerMenu.setVisibility(View.INVISIBLE);
+
+	}
+
+	/**
+	 * 判断是否扫了读者证号
+	 * @param readerAction
+	 * @return
+	 */
+	private boolean isExistReader(int readerAction){
+		if (App.readerId==null&&App.readerName==null){
+			Intent intent = new Intent();
+			intent.putExtra("readerAction", readerAction);
+			intent.setClass(getActivity(), CheckReaderActivity.class);
+			startActivity(intent);
+			return false;
+		}
+		return true;
+	}
+
+}

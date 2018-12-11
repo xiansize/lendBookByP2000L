@@ -1,0 +1,328 @@
+package com.tc.nfc.app.activity;
+
+import java.io.File;
+import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+import com.tc.api.versionSetting;
+import com.tc.nfc.R;
+
+import com.tc.nfc.api.utils.NetworkHelp;
+import com.tc.nfc.api.utils.updateAppUtil;
+import com.tc.nfc.app.utils.App;
+import com.tc.nfc.app.utils.NFCApplication;
+import com.tc.nfc.app.view.HintDialog;
+import com.tc.nfc.core.Listener;
+import com.tc.nfc.core.ListenerImpl;
+
+import android.app.Dialog;
+import android.app.PendingIntent;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.nfc.NfcAdapter;
+import android.nfc.tech.NfcV;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTabHost;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TabHost.TabSpec;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends FragmentActivity {
+	private static final String TAG = "MainActivity";
+	private LayoutInflater layoutInflater;
+	private Toast toast;
+	private Handler mHandler;
+	private PendingIntent pendingIntent;
+	private NfcAdapter nfcAdapter;
+	private IntentFilter[] mFilters;
+	private String[][] mTechLists;
+	
+	private ListenerImpl mListenerImpl;
+
+	private ProgressDialog m_progressDlg;
+
+	private Dialog dialogs;
+	
+	private HintDialog mDialog = null;
+	public NFCApplication mNFCApplication;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.activity_main);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+
+		initViews();
+
+
+		nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+		if (nfcAdapter == null) {
+			System.out.println("没NFC");
+			toast = Toast.makeText(MainActivity.this, "手机不支持NFC", Toast.LENGTH_SHORT);
+			toast.show();
+			return;
+		} else if (!nfcAdapter.isEnabled()) {
+
+			return;
+		}
+		pendingIntent = PendingIntent.getActivity(this, 0,
+				new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+		IntentFilter ndef = new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED);
+		try {
+			ndef.addDataType("*/*");
+		} catch (IntentFilter.MalformedMimeTypeException e) {
+			throw new RuntimeException("fail", e);
+		}
+		mFilters = new IntentFilter[] { ndef };
+		mTechLists = new String[][] { new String[] { NfcV.class.getName() } };
+		System.out.println("NFC已启动");
+		if (App.JSESSIONID == null) {
+			System.out.println("未登录");
+			this.finish();
+			login();
+		}
+
+
+		
+	}
+
+
+	// 跳转到登录页面
+	public void login() {
+		Intent intent = new Intent();
+		intent.setClass(this, LoginActivity.class);
+		startActivity(intent);
+	}
+
+
+
+	public Fragment getVisibleFragment() {
+		FragmentManager fragmentManager = MainActivity.this.getSupportFragmentManager();
+		List<Fragment> fragments = fragmentManager.getFragments();
+
+		for (Fragment fragment : fragments) {
+			if (fragment != null && fragment.isVisible())
+				return fragment;
+		}
+		return null;
+	}
+
+
+	/**
+	 * 接受nfc 动作
+	 */
+	protected void onNewIntent(Intent intent) {
+	
+		super.onNewIntent(intent);
+		if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(intent.getAction())) {
+
+			Fragment current = getVisibleFragment();
+
+
+		}
+	}
+
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		nfcAdapter.disableForegroundDispatch(this);
+		//mNFCApplication.getCommonAction().NFCDisableForeground(this);
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		//mNFCApplication =(NFCApplication)this.getApplication();
+		//mNFCApplication.getCommonAction().NFCEnableForeground(this);
+		nfcAdapter.enableForegroundDispatch(this, pendingIntent, mFilters, mTechLists);
+	}
+
+	/**
+	 * 初始化界面
+	 */
+	private void initViews() {
+
+		layoutInflater = LayoutInflater.from(this);
+
+		initFragments();
+
+		 m_progressDlg =  new ProgressDialog(this);
+	     m_progressDlg.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+	     // 设置ProgressDialog 的进度条是否不明确 false 就是不设置为不明确
+	     m_progressDlg.setIndeterminate(false);
+
+	     //注册广播接收器
+	     //registerReceiver();
+	     //绑定网络数据回调接收器
+	     initListener();
+	     updateAppUtil.getServerVersion(this);
+
+	}
+
+	/**
+	 * 初始化fragments
+	 */
+	private void initFragments(){
+
+		FragmentTabHost tabHost = (FragmentTabHost) findViewById(R.id.maintab);
+		tabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
+		int count = versionSetting.mFragmentArray.length;
+		for (int i = 0; i < count; i++) {
+
+			TabSpec tabSpec = tabHost.newTabSpec(versionSetting.mTextArray[i]).setIndicator(getTabItemView(i));
+			tabHost.addTab(tabSpec, versionSetting.mFragmentArray[i], null);
+
+		}
+	}
+	/**
+	 * 初始化tab ICON和数据
+	 * @param index
+	 * @return
+	 */
+	private View getTabItemView(int index) {
+		View view = layoutInflater.inflate(R.layout.footer_tab, null);
+		ImageView imageView = (ImageView) view.findViewById(R.id.imageview);
+		TextView textView = (TextView) view.findViewById(R.id.textview);
+		imageView.setImageResource(versionSetting.mImageArray[index]);
+		textView.setText(versionSetting.mTextArray[index]);
+
+		return view;
+	}
+	
+	public void initListener() {
+        mListenerImpl = null;
+        mListenerImpl = ListenerImpl.getInstance();
+        mListenerImpl.setOnListener(new Listener() {
+            @Override
+            public <T> void receiveData(T data) {
+
+                Log.d(TAG, data.toString());
+                dealAfterResponse((String) data);
+            }
+        });
+    }
+	
+	/**
+     * 解析返回数据
+     * @param s
+     */
+    private void dealAfterResponse(String s) {
+        try {
+            JSONObject object;
+
+            object = new JSONObject(s);
+            if (object.getInt("success")==200) {
+                //版本需要更新操作
+                if (object.getInt("newVersion")!= updateAppUtil.getAppVersion(this)){
+                    Log.d(TAG, "not same"+ updateAppUtil.getAppVersion(this));
+                    if (NetworkHelp.isWifi(this)){
+                        if (dialogs==null)
+                        	createDialog("版本更新","有版本更新，是否更新版本");
+                    }
+                    else {
+                        if (dialogs==null)
+                        	createDialog("版本更新","有版本更新，当前不在wifi状态，是否更新版本");
+                    }
+
+                }
+                //版本不需要更新操作
+                else{
+                    Log.d(TAG, "same");
+                }
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 注册广播接收器
+     */
+//    private  void registerReceiver(){
+//        IntentFilter filter=new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+//        MyReceiver myReceiver=new MyReceiver();
+//        this.registerReceiver(myReceiver, filter);
+//    }
+
+    /**
+     * 接收网络状态广播消息
+     */
+//    public class MyReceiver extends BroadcastReceiver {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            ConnectivityManager connectivityManager=(ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+//            NetworkInfo  mobNetInfo=connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+//            NetworkInfo  wifiNetInfo=connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+//
+//            if (!mobNetInfo.isConnected() && !wifiNetInfo.isConnected()) {
+//                Toast.makeText(context, "网络状态不可用", Toast.LENGTH_SHORT).show();
+//            }else {
+//                dialogs=null;
+//                //获取服务器版本
+//                Log.d(TAG,"MyReceiver");
+//                updateAppUtil.getServerVersion(context);
+//            }
+//        }  //如果无网络连接activeInfo为null
+//    }
+
+	
+	private void createDialog(String title,String message){
+		if(mDialog==null){
+			mDialog = new HintDialog(this,title,message);
+			mDialog.showDialog(R.layout.dialog_normals_layout, new HintDialog.IHintDialog(){
+
+				@Override
+				public void showWindowDetail(Window window, String title,
+						String message) {
+					TextView OKTextView = (TextView) window.findViewById(R.id.positiveButton);
+					TextView CancleTextView =(TextView)window.findViewById(R.id.negativeButton);
+					TextView messageTextView = (TextView) window.findViewById(R.id.message);
+					TextView titleTextView = (TextView) window.findViewById(R.id.title_textview);
+					OKTextView.setOnClickListener(new OnClickListener(){
+						@Override
+						public void onClick(View v) {
+							m_progressDlg.setTitle("正在下载");
+                            m_progressDlg.setMessage("请稍候...");
+                            updateAppUtil.downNewApp(versionSetting.GET_SERVER_IP, m_progressDlg);
+                            updateAppUtil.getAllFiles(new File("/sdcard/newApp"));
+                            mDialog.dismissDialog();
+						}
+
+					});
+					CancleTextView.setOnClickListener(new OnClickListener(){
+						@Override
+						public void onClick(View v) {
+							mDialog.dismissDialog();
+						}
+					});
+					messageTextView.setText(message);
+					titleTextView.setText(title);
+				}
+			});
+		}
+	}
+
+	public void setHandler(Handler handler) {
+		mHandler = handler;
+	}
+
+}

@@ -1,0 +1,32 @@
+package com.tc.api;
+
+        import com.tc.nfc.R;
+        import com.tc.nfc.app.fragment.MyFragment;
+
+/**
+ * Created by tangjiarao on 16/6/23.
+ */
+public class versionSetting {
+    public static final String ENDPOINT = "bbbb";
+
+    public static final int IS_ASMIN= 0;
+    public static final String mTextArray[] = { "我要借书", "查询继借", "我的信息", "更多" };
+    public static final Class mFragmentArray[] = {IndexFragment.class,searchFunctionFragment.class,MyFragment.class};
+    public static final int mImageArray[] = { R.drawable.footer_index_button, R.drawable.footer_search_button,
+            R.drawable.footer_persional_button};
+    public static final int  dealIntentFragment = 1;
+
+    public static final String logoName = "";
+    public static final int logoIcon =R.drawable.logo;
+
+    public static String interfaceName = "gzchild";
+    //获取服务器上app版本地址
+    public static String GET_SERVER_IP = "http://125.88.172.248:18098/cardcenter/service/getServerVersion";
+    //下载新版本app地址
+    public static String DOWN_NEW_APP = "http://125.88.172.248:18098/cardcenter/service/downApp?interfaceName="+interfaceName;
+
+//    //获取服务器上app版本地址
+//    public static String GET_SERVER_IP = "http://192.168.0.168:18098/cardcenter/service/getServerVersion";
+//    //下载新版本app地址
+//    public static String DOWN_NEW_APP = "http://192.168.0.168:18098/cardcenter/service/downApp?interfaceName="+interfaceName;
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- checkReader 页面的btn-->
+    <color name="checkReader_btn">#00ffffff</color>
+    <color name="checkReader_btn_pressed">#dcdcdc</color>
+</resources>

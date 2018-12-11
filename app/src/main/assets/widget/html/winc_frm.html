@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+	<meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+	<title>WinC</title>
+	<link rel="stylesheet" type="text/css" href="../css/api.css" />
+	<link rel="stylesheet" type="text/css" href="../css/box.css" />
+	<script type="text/javascript" src="../script/public.js"></script>
+	<!-- 视口标签 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!-- 删除苹果默认的工具栏和菜单栏 -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- 设置苹果工具栏颜色 -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+	<meta name="format-detection" content="telphone=no, email=no" />
+	<!-- 启用360浏览器的极速模式(webkit) -->
+	<meta name="renderer" content="webkit">
+	<!-- 避免IE使用兼容模式 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+	<meta name="HandheldFriendly" content="true">
+	<!-- 微软的老式浏览器 -->
+	<meta name="MobileOptimized" content="320">
+	<!-- uc强制竖屏 -->
+	<meta name="screen-orientation" content="portrait">
+	<!-- QQ强制竖屏 -->
+	<meta name="x5-orientation" content="portrait">
+	<!-- UC应用模式 -->
+	<meta name="browsermode" content="application">
+	<!-- QQ应用模式 -->
+	<meta name="x5-page-mode" content="app">
+	<!-- windows phone 点击无高光 -->
+	<meta name="msapplication-tap-highlight" content="no">
+	<!-- 适应移动端end -->
+	<link rel="stylesheet" type="text/css" href="../css/base.css" />
+	<link rel="stylesheet" type="text/css" href="../css/index.css" />
+	<script src="../script/zepto.js" type="text/javascript"></script>
+	<script src="../script/bgResponse.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	    apiready = function(){
+			fixStatusBar();//沉浸式效果，支持IOS7及Android4.4及以上
+	    };
+	     function sendH5EventToNative(){
+	     	var obj=new Object();
+	     	obj.phone=document.getElementById("phone").value;
+	     	obj.email=document.getElementById("email").value;
+
+	    	api.sendEvent({
+	    		name: 'submitData',
+	    		extra: obj
+	    	});
+	    }
+	</script>
+</head>
+<body>
+<div class="wrap">
+	<section class="container">
+		<div class="content-area">
+			<div class="head-area">
+				<img src="../image/per.png"/>
+			</div>
+			<div class="mes-con">
+				<p>王浩：</p>
+				<p class="mes-in">请留下你的邮箱或者手机号，我们把问题处理完之后第一时间以邮件或者短信的方式通知你噢！</p>
+			</div>
+			<form action="" method="post">
+				<div class="input-group">
+					<div class="ico">
+						<i class="ico-phone"></i>
+					</div>
+					<input type="number" class="phone inp" id="phone" placeholder="手机"/>
+				</div>
+				<div class="input-group">
+					<div class="ico">
+						<i class="ico-email"></i>
+					</div>
+					<input type="email" class="email inp" id="email" placeholder="邮箱"/>
+				</div>
+				<div class="confirm-btn">
+					<!--<input type="submit" value="确定"/>-->
+					<a onclick="sendH5EventToNative()">确定</a>
+				</div>
+
+			</form>
+
+		</div>
+		</br>
+		</br>
+
+	</section>
+</div>
+<script type="text/javascript">
+	         $(".container").bgresponse({
+	            bgWidth:720,
+	            bgHeight:1234
+	         });
+	        </script>
+</body>
+</html>

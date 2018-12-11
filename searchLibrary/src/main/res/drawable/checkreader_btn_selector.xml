@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" >
+        <shape>  
+             <!--色值-->  
+            <solid android:color="@color/checkReader_btn_pressed" />
+            <!--圆角-->  
+            <corners android:radius="2dp" />
+            <stroke
+                android:width="0.01dp"
+                android:color="#999" />
+        </shape>
+    </item>
+    <item>
+        <shape>  
+            <solid android:color="@color/checkReader_btn" />
+            <corners android:radius="2dp" />
+            <stroke
+                android:width="0.01dp"
+                android:color="#999" />
+        </shape>  
+    </item>
+</selector>

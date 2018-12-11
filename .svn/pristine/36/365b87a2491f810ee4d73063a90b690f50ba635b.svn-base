@@ -1,0 +1,76 @@
+package com.tc.nfc.app.adapter;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.tc.nfc.R;
+import com.tc.nfc.app.view.SmoothCheckBox;
+import com.tc.nfc.model.Book;
+
+import java.util.List;
+
+
+
+public class ReloadAdapter extends HolderAdapter<Book, ReloadAdapter.ViewHolder>{
+
+    private List<Book> listData;
+
+  public ReloadAdapter(Context context, List<Book> listData) {
+      super(context, listData);
+      this.listData =listData;
+  }  
+
+  @Override  
+  public View buildConvertView(LayoutInflater layoutInflater,Book b, int position) {
+      return inflate(R.layout.loadbook_list3);
+  }  
+
+  @Override  
+  public ViewHolder buildHolder(View convertView,Book b, int position) {
+
+      ViewHolder holder = new ViewHolder();  
+      holder.image = (ImageView)convertView.findViewById(R.id.image);  
+      holder.title = (TextView)convertView.findViewById(R.id.title);  
+      holder.barcode = (TextView)convertView.findViewById(R.id.barcode);
+      holder.returnDate = (TextView)convertView.findViewById(R.id.returnDate);
+      holder.checkBox =(SmoothCheckBox)convertView.findViewById(R.id.checkbox);
+
+      return holder;  
+  }  
+
+  @Override  
+  public void bindViewDatas(ViewHolder holder,final Book b, final int position) {
+
+	  holder.title.setText(b.getBookTitle());
+	  holder.barcode.setText(b.getBookBarcode());
+	  holder.returnDate.setText(b.getBookDate());
+
+      holder.checkBox.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
+          @Override
+          public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
+              b.setIsCheck(isChecked);
+          }
+      });
+      //这句话一定要在setOnCheckedChangeListener下面，不知为什么
+      holder.checkBox.setChecked(b.getIsCheck());
+  }
+    public List<Book> getListData(){
+        return listData;
+    }
+
+    @Override
+    public void setListData(List<Book> listData) {
+        this.listData = listData;
+    }
+
+    public static class ViewHolder {
+        
+	  ImageView image;
+	  TextView title,barcode,returnDate;
+      SmoothCheckBox checkBox;
+  }
+
+}  

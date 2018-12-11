@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f8f8f8"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_title" />
+
+
+
+    <EditText
+        android:id="@+id/etNoCardInputReaderId"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:padding="10dp"
+        android:hint="读者账号"
+        android:textColorHint="#C9C9C9"
+        android:maxLines="1"
+        android:textSize="15sp"
+        android:background="@drawable/text_bookbg"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"/>
+
+
+    <EditText
+        android:id="@+id/etNoCardInputReaderPassword"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:padding="10dp"
+        android:hint="读者密码"
+        android:textColorHint="#C9C9C9"
+        android:maxLines="1"
+        android:textSize="15sp"
+        android:background="@drawable/text_bookbg"
+        android:inputType="textPassword"
+        android:layout_margin="10dp" />
+
+
+    <Button
+        android:id="@+id/btnNoCardInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:padding="10dp"
+        android:background="@drawable/btn_ok_selector"
+        android:text="确定"
+        android:textSize="20sp"
+        android:textColor="#fff" />
+
+
+
+</LinearLayout>

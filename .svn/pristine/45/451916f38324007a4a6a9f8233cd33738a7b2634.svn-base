@@ -1,0 +1,11 @@
+package com.tc.nfc.api.utils;
+
+/**
+ * Created by tangjiarao on 16/7/21.
+ */
+public class Constant {
+    public static int LOAN_ACTION=0;
+    public static int RETURN_ACTION=1;
+    public static int RELOAN_ACTION=2;
+    public static int OWN_ACTION=3;
+}

@@ -1,0 +1,117 @@
+package com.tc.nfc.api.utils;
+
+import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
+
+
+import com.tc.api.versionSetting;
+import com.tc.nfc.core.ListenerImpl;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+/**
+ * Created by tangjiarao on 16/6/3.
+ */
+public class CommonAsyncTask extends AsyncTask<String,Integer,String>{
+
+    //显示UI的组件
+    private Context mContext;
+    //回调
+    private ListenerImpl listener;
+    //调用标识
+    private String flag;
+    //访问url
+    private String url;
+
+    private String httpFuntion;
+    //post传参
+    private Map<String, String> parameters;
+
+    private final String TAG="CommonAsyncTask";
+    //onPreExecute方法用于在执行后台任务前做一些UI操作
+
+    public CommonAsyncTask(Context mContext){
+        this.mContext = mContext;
+    }
+
+    protected void onPreExecute() {
+        super.onPreExecute();
+        Log.i(TAG, "onPreExecute() called");
+        if (!(NetworkHelp.isConnected(mContext))) {
+            Toast.makeText(mContext, "网络状态不可用", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+    }
+    //doInBackground方法内部执行后台任务,不可在此方法内修改UI
+    @Override
+    protected String doInBackground(String... params) {
+
+        httpFuntion= params[0];
+
+        url = params[1];
+
+        if(httpFuntion.equals("post")){
+            flag =params[2];
+            parameters = new HashMap<>();
+
+            switch (flag) {
+                case "gzchild":
+
+                    parameters.put("interfaceName", params[2]);
+                    break;
+            }
+            return NetworkHelp.sendDataByPost(parameters, "utf-8", url);
+        }
+        else{
+
+            return NetworkHelp.getDataByGet("utf-8", url);
+        }
+
+    }
+
+    //onProgressUpdate方法用于更新进度信息
+    @Override
+    protected void onProgressUpdate(Integer... progresses) {
+        Log.i(TAG, "onProgressUpdate(Progress... progresses) called");
+        //progressBar.setProgress(progresses[0]);
+        //textView.setText("loading..." + progresses[0] + "%");
+    }
+
+    //onPostExecute方法用于在执行完后台任务后更新UI,显示结果
+    @Override
+    protected void onPostExecute(String result) {
+        Log.i(TAG, "onPostExecute(Result result) called");
+        Log.d("json",result);
+        super.onPostExecute(result);
+//        textView.setText(result);
+//
+//        execute.setEnabled(true);
+//        cancel.setEnabled(false);
+        listener = null;
+        listener = ListenerImpl.getInstance();
+        listener.transferData(result);
+        clear();
+    }
+
+    //onCancelled方法用于在取消执行中的任务时更改UI
+    @Override
+    protected void onCancelled() {
+        Log.i(TAG, "onCancelled() called");
+//        textView.setText("cancelled");
+//        progressBar.setProgress(0);
+//
+//        execute.setEnabled(true);
+//        cancel.setEnabled(false);
+    }
+    protected void clear(){
+        parameters = null;
+        flag = null;
+        url = null;
+        httpFuntion = null;
+    }
+}

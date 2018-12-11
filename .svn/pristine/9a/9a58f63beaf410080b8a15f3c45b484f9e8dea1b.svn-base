@@ -1,0 +1,266 @@
+package com.tc.nfc.app.activity;
+
+import com.tc.api.versionSetting;
+import com.tc.nfc.BuildConfig;
+import com.tc.nfc.R;
+import com.tc.nfc.app.utils.App;
+import com.tc.nfc.app.utils.Constant;
+import com.tc.nfc.app.utils.NFCApplication;
+import com.tc.nfc.app.view.HintDialog;
+import com.tc.nfc.core.listener.ActionCallbackListener;
+
+import android.app.AlertDialog;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.graphics.drawable.AnimationDrawable;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.File;
+
+public class LoginActivity extends FragmentActivity implements OnClickListener {
+	
+	private static final String TAG = "LoginActivity";
+	public NFCApplication mNFCApplication;
+	private LoginActivity that;
+	private Toast toast;
+	private Button loginbtn;
+	private CheckBox rempass;
+	private EditText uid,pass;
+	private SharedPreferences sp;
+	private ImageView animationIV;
+	private AnimationDrawable AniDraw ;
+	private HintDialog mDialog = null;
+	private TextView logoText;
+	private ImageView logoIcon;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.activity_login);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+
+
+		/**
+		 * 这个是免登录
+		 * 不生效？
+		 */
+		if (App.JSESSIONID != null) {
+			this.finish();
+			Intent intent = new Intent();
+			intent.setClass(this, MainActivity.class);
+			startActivity(intent);
+		}
+
+		initView();
+
+		setListener();
+
+	}
+
+	@Override
+	protected void onResume() {
+
+		super.onResume();
+		Log.d("JSON","WEIKAISHI");
+		mDialog=null;
+		isHasNFC();
+	}
+	/**
+	 * 初始化
+	 */
+	private void initView(){
+
+		mNFCApplication =(NFCApplication)this.getApplication();
+		that = this;
+
+		DisplayMetrics displayMetrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+		Constant.displayWidth = displayMetrics.widthPixels;
+		Constant.displayHeight = displayMetrics.heightPixels;
+
+		//隐藏toolbar_title
+		this.findViewById(R.id.backbutton).setVisibility(View.INVISIBLE);
+		this.findViewById(R.id.title).setVisibility(View.INVISIBLE);
+
+		sp = this.getSharedPreferences("userInfo", Context.MODE_WORLD_READABLE);
+		uid = (EditText) this.findViewById(R.id.uid);
+		pass = (EditText) this.findViewById(R.id.pass);
+		rempass = (CheckBox) this.findViewById(R.id.rempass);
+		loginbtn = (Button) this.findViewById(R.id.loginbutton);
+		animationIV = (ImageView)findViewById(R.id.animationIV);
+		animationIV.setBackgroundResource(R.drawable.load_animation_1);
+		animationIV.setVisibility(View.INVISIBLE);
+		AniDraw = (AnimationDrawable) animationIV.getBackground();
+		logoText =(TextView)this.findViewById(R.id.logoText);
+		logoIcon =(ImageView) this.findViewById(R.id.logoIcon);
+		logoText.setText(versionSetting.logoName);
+		logoIcon.setImageResource(versionSetting.logoIcon);
+		isRemPass();
+
+	}
+	
+	/**
+	 * 设置监听
+	 */
+	private void setListener(){
+		
+		this.findViewById(R.id.loginbutton).setOnClickListener(this);
+
+		
+		//checkbox状态更改监听
+		rempass.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				// TODO Auto-generated method stub
+				if (rempass.isChecked()) {
+					sp.edit().putBoolean("isRem", true).commit();
+				} else {
+					sp.edit().putBoolean("isRem", false).commit();
+				}
+			}
+		});
+		
+	}
+
+
+	@Override
+	public void onClick(View v) {
+
+		switch (v.getId()) {
+		case R.id.loginbutton:
+			
+			animationIV.setVisibility(View.VISIBLE);
+			AniDraw.start();
+
+			login();
+			break;
+		case R.id.backbutton:
+			that.finish();
+			break;
+		}
+	}
+
+	/**
+	 * 登录
+	 */
+	public void login(){
+		mNFCApplication.getLoginAction().login(uid.getText().toString(), pass.getText().toString()
+				, new ActionCallbackListener<Void>() {
+
+			@Override
+			public void onSuccess(Void data) {
+				Log.d(TAG, "TRUE");
+				if (rempass.isChecked()) {
+					// 记住用户名、密码、
+					Editor editor = sp.edit();
+					editor.putString("uid", uid.getText().toString());
+					editor.putString("pass", pass.getText().toString());
+					editor.commit();
+				}
+
+
+				Intent intent = new Intent();
+				intent.setClass(that, MainActivity.class);
+				startActivity(intent);
+				that.finish();
+			}
+
+			@Override
+			public void onFailure(String errorEvent, String message) {
+
+				AniDraw.stop();
+				animationIV.setVisibility(View.INVISIBLE);
+				toast = Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT);
+				toast.show();
+			}
+		});
+	}
+
+	/**
+	 * 记住密码操作
+	 */
+	public void isRemPass(){
+		if (sp.getBoolean("isRem", false)) {
+			uid.setText(sp.getString("uid", ""));
+			pass.setText(sp.getString("pass", ""));
+		}
+		rempass.setChecked(sp.getBoolean("isRem", false));
+	}
+
+	/**
+	 * 是否有NFC
+	 */
+	public void isHasNFC() {
+		mNFCApplication.getCommonAction().isHasNFC(new ActionCallbackListener<Void>() {
+
+			@Override
+			public void onSuccess(Void data) {
+			}
+
+			@Override
+			public void onFailure(String errorEvent, String message) {
+				createDialog(errorEvent, message);
+
+			}
+		});
+	}
+
+	/**
+	 * 创建弹框
+	 * @param title
+	 * @param message
+	 */
+	private void createDialog(String title,String message){
+		if(mDialog==null){
+			mDialog = new HintDialog(this,title,message);
+			mDialog.showDialog(R.layout.dialog_hint_layout, new HintDialog.IHintDialog(){
+
+				@Override
+				public void showWindowDetail(Window window, String title,
+											 final String message) {
+					TextView OKTextView = (TextView) window.findViewById(R.id.positiveButton);
+					TextView messageTextView = (TextView) window.findViewById(R.id.message);
+					TextView titleTextView = (TextView) window.findViewById(R.id.title_textview);
+					OKTextView.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+
+							if(message.contains("开启")) {
+								startActivity(new Intent("android.settings.NFC_SETTINGS"));
+							}else{
+
+								finish();
+							}
+							mDialog.dismissDialog();
+						}
+
+					});
+					messageTextView.setText(message);
+				}
+			});
+		}
+	}
+}

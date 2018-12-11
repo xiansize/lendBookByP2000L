@@ -1,0 +1,45 @@
+package com.tc.nfc.api.implement;
+
+import android.util.Log;
+
+import com.tc.api.versionSetting;
+import com.tc.nfc.api.interfaces.LoginApi;
+import com.tc.nfc.api.utils.ConstantURL;
+import com.tc.nfc.app.utils.App;
+import com.tc.nfc.app.utils.Utils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+/**
+ * Created by tangjiarao on 16/6/23.
+ */
+public class LoginApiImpl implements LoginApi {
+
+    private final String TAG = "LoginApiImpl";
+
+    public String login(String uid, String pass) {
+
+        JSONObject json = new JSONObject();
+        try {
+            json.put("action", ConstantURL.LOGIN);
+            json.put("rdid", uid);
+            json.put("password", pass);
+            String[] keycode = App.getKeyCode(uid);
+            json.put("keyCode", keycode[0]);
+            json.put("time", keycode[1]);
+
+            return Utils.doJsonPost(versionSetting.baseUrl, json.toString());
+
+        } catch (JSONException e) {
+
+            Log.d(TAG,"JSONException");
+            return null;
+        } catch (Exception e) {
+
+            Log.d(TAG,"IOException");
+            return null;
+        }
+    }
+}

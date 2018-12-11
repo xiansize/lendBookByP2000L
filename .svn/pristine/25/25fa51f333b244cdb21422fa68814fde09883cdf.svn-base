@@ -1,0 +1,25 @@
+package com.tc.nfc.core;
+
+
+public class ListenerImpl {
+    private Listener mListener;
+
+    private static ListenerImpl instance = new ListenerImpl();
+
+    private ListenerImpl() {}
+
+    public static ListenerImpl getInstance() {
+        return instance;
+    }
+
+    public void setOnListener(Listener listener) {
+        mListener = listener;
+    }
+
+    public <T> void transferData(T data) {
+        if (mListener != null) {
+            mListener.receiveData(data);
+        }
+    }
+}
+

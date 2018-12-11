@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#377eb4</color>
+    <color name="colorPrimary2">#FF80AB</color>
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+    <color name="shadow">#AA000000</color>
+    <color name="baseLoadingView_bg">#be000000</color>
+
+    <!-- LOGIN-->
+    <color name="Login_button_pressed">#70a9ca</color>
+    <color name="Login_button">#77b3d7</color>
+
+    <color name="custom_theme_darker">#ad843d</color>
+    <color name="custom_theme_dark">#d4a14a</color>
+    <color name="custom_theme_primary">#fbbf58</color>
+    <color name="custom_theme_light">#fae8c8</color>
+
+    <integer-array name="custom_theme">
+        <item>@color/custom_theme_darker</item> <!-- really much darker color of main color -->
+        <item>@color/custom_theme_dark</item> <!-- a bit darker color of your main color -->
+        <item>@color/custom_theme_primary</item> <!-- main color of your theme -->
+        <item>@color/custom_theme_light</item> <!-- really much lighter color of main color -->
+    </integer-array>
+
+    <!-- checkReader 页面的btn-->
+    <color name="checkReader_btn">#00ffffff</color>
+    <color name="checkReader_btn_pressed">#bcbcbc</color>
+
+    <!-- 注销按钮的颜色-->
+    <color name="btn_logout_normal">#377eb4</color>
+    <color name="btn_logout_press">#55377eb4</color>
+
+    <!-- reloadBook 页面的btn-->
+    <color name="reload_btn">@color/colorPrimary</color>
+    <color name="reload_btn_pressed">#2f87c6</color>
+
+    <!-- purchase 页面的btn-->
+    <color name="purchase_btn">#1584e1</color>
+    <color name="purchase_btn_pressed">#137AD1</color>
+
+    <!--设置界面退出的颜色-->
+    <color name="setting_logout_normal">#FFFFFF</color>
+    <color name="setting_logout_press">#cccccc</color>
+
+    <!-- choice dialog button-->
+    <color name="choice_dialog">#ffffff</color>
+    <color name="choice_dialog_pressed">#107e8f</color>
+
+    <!-- reload textSelector 颜色改变-->
+    <color name="reload_text">#605f5f</color>
+    <color name="reload_text_pressed">#dcdcdc</color>
+
+
+    <!-- 不能被选择按钮-->
+    <color name="notSelected_btn">#cacaca</color>
+    <color name="notSelected_btn_pressed">#cacaca</color>
+
+    <!-- 颜色按钮-->
+    <color name="btcolor1">#dafaf4</color>
+    <color name="btcolor2">#ecf9f7</color>
+
+
+    <!-- griditem 颜色参数-->
+    <color name="griditems_bg">#ffe8ecef</color>
+    <color name="commo_text_color">#ff333333</color>
+    <color name="line">#ffd3dde6</color>
+</resources>

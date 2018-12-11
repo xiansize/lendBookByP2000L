@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:background="#FFF">
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="4dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/text1"
+            android:text="text1"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/reduceBtn"
+                android:layout_alignParentLeft="true"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:text=" - "
+                android:textSize="25sp"
+                android:background="@drawable/purchase_addreducebtn_selector"
+
+                />
+            <TextView
+                android:id="@+id/text2"
+                android:gravity="center"
+                android:layout_toRightOf="@+id/reduceBtn"
+                android:layout_toLeftOf="@+id/addBtn"
+                android:layout_alignTop="@+id/reduceBtn"
+                android:layout_alignBottom="@+id/reduceBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:background="@drawable/purchase_addreducebtn_selector"/>
+            <Button
+                android:id="@+id/addBtn"
+                android:layout_alignParentRight="true"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:text=" + "
+                android:textSize="25sp"
+                android:background="@drawable/purchase_addreducebtn_selector"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1.1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/sureBtn"
+            android:text="确定"
+            android:textSize="15sp"
+            android:textColor="#FFF"
+            android:background="@drawable/purchase_btn_selector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp" />
+    </LinearLayout>
+
+</LinearLayout>

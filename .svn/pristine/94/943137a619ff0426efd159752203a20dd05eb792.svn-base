@@ -1,0 +1,97 @@
+package com.tc.nfc.core.implement;
+
+import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
+
+
+import com.tc.nfc.api.implement.UserApiImpl;
+import com.tc.nfc.api.interfaces.UserApi;
+import com.tc.nfc.core.interfaces.UserAction;
+import com.tc.nfc.core.listener.ActionCallbackListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+/**
+ * Created by tangjiarao on 16/6/23.
+ */
+public class UserActionImpl implements UserAction {
+
+    private Context context;
+    private UserApi mUserApi;
+
+    public UserActionImpl(Context context) {
+        this.context = context;
+        this.mUserApi = new UserApiImpl();
+    }
+
+
+    @Override
+    public void getUserInfo(final ActionCallbackListener<JSONObject> listener) {
+
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... voids) {
+
+                return mUserApi.getUserInfo();
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                if (listener != null && result != null) {
+                    Log.d("json", result);
+                    try {
+                        JSONObject data =new JSONObject(result);
+
+                        data = data.getJSONObject("reader");
+                        Log.d("json",data.toString());
+                        listener.onSuccess(data);
+
+                    } catch (JSONException e) {
+
+                        listener.onFailure("ERROR", "连接服务器失败");
+                    }
+                }
+                else{
+                    Log.d("JSON","ERR2");
+                    listener.onFailure("ERROR", "连接服务器失败");
+                }
+            }
+        }.execute();
+    }
+
+    @Override
+    public void getReaderInfo(final String readerId,final ActionCallbackListener<JSONObject> listener) {
+
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... voids) {
+
+                return mUserApi.getReaderInfo(readerId);
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                if (listener != null && result != null) {
+                    Log.d("json", result);
+                    try {
+                        JSONObject data =new JSONObject(result);
+
+                        data = data.getJSONObject("reader");
+                        Log.d("json",data.toString());
+                        listener.onSuccess(data);
+
+                    } catch (JSONException e) {
+
+                        listener.onFailure("ERROR", "连接服务器失败");
+                    }
+                }
+                else{
+                    Log.d("JSON","ERR2");
+                    listener.onFailure("ERROR", "连接服务器失败");
+                }
+            }
+        }.execute();
+    }
+}

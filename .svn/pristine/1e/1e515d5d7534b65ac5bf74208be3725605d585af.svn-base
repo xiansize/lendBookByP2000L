@@ -1,0 +1,428 @@
+package com.tc.nfc.core.implement;
+
+import android.content.Context;
+import android.content.Intent;
+import android.nfc.NfcAdapter;
+import android.nfc.Tag;
+import android.nfc.tech.NfcV;
+import android.os.AsyncTask;
+import android.util.Log;
+
+import com.tc.nfc.api.implement.BookApiImpl;
+import com.tc.nfc.api.interfaces.BookApi;
+import com.tc.nfc.app.utils.NfcVUtil;
+import com.tc.nfc.app.utils.Utils;
+import com.tc.nfc.core.interfaces.BookAction;
+import com.tc.nfc.core.listener.ActionCallbackListener;
+import com.tc.nfc.model.Book;
+import com.tc.nfc.model.ReturnBookResult;
+
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by tangjiarao on 16/6/23.
+ */
+public class BookActionImpl implements BookAction {
+
+    private final String TAG = "BookActionImpl";
+    private Context context;
+    private BookApi mBookApi;
+    private JSONArray list;
+    private List<Map<String, Object>> listData ;
+    private List<Book> bookList;
+    private List<ReturnBookResult> bookResultList;
+    public BookActionImpl(Context context) {
+        this.context = context;
+        this.mBookApi = new BookApiImpl();
+    }
+
+
+
+    public String getNFCBarcode(Intent intent) {
+        String resultStr = "";
+        Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+        NfcVUtil.mNfcv = NfcV.get(tag);
+        try {
+            //resultStr = NfcVUtil.readBarcode(intent);
+            resultStr = NfcVUtil.checkBarcode();
+
+            if (!Utils.isEmpty(resultStr)) {
+                Log.d("home","检查书本是否存在"+resultStr);
+               return resultStr;
+            }
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    /**
+     * 判断图书是否可借
+     * @param readerId 读者id
+     * @param barcode  图书条形码
+     * @param listener 回调
+     */
+    public void isBookCanLoadn(final String readerId,final String barcode,final ActionCallbackListener< Map<String, Object>> listener) {
+
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... voids) {
+
+                return mBookApi.isBookCanLoadn(readerId, barcode);
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+
+                if (listener != null && result != null) {
+                    Log.d("json",result);
+                    try {
+                        JSONObject jsonObject = new JSONObject(result);
+                        //图书可借
+                        if (jsonObject.getString("success").equals("true")) {
+                            boolean flag = NfcVUtil.writeAFI(true);
+                            Log.d("json","是否改了标识"+flag);
+                            //图书编号不为空且已经修改标识位
+                            if(flag&&!barcode.isEmpty()){
+                                listener.onSuccess(null);
+                            }
+                            //图书不可借
+                        } else {
+
+                            listener.onSuccess(judgeResult(barcode, jsonObject));
+
+                        }
+                    }catch (JSONException e) {
+                        listener.onFailure("ERROR", "连接服务器失败");
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
+                }
+                else{
+                    listener.onFailure("ERROR", "连接服务器失败");
+                }
+            }
+        }.execute();
+    }
+
+
+    /**
+     * 借书操作
+     * @param readerId  读者id
+     * @param barcode   图书条形码
+     * @param listener  回调
+     */
+    public void loanBook(final String readerId,final String barcode,final ActionCallbackListener< Map<String, Object>> listener) {
+
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... voids) {
+
+                return mBookApi.loanBook(readerId, barcode);
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+
+                if (listener != null && result != null) {
+
+                    try {
+                        JSONObject json = new JSONObject(result);
+
+                        //借书失败
+                        if (json.getString("success").equals("false") && !Utils.isEmpty(json.getString("message"))) {
+                            if (NfcVUtil.writeAFI(false)) {
+                                listener.onSuccess(judgeResult(barcode, json));
+                            }
+                        }
+                        //借书成功
+                        else {
+                            listener.onSuccess(judgeResult(barcode, json));
+
+                        }
+                    } catch (JSONException e) {
+
+                        e.printStackTrace();
+                        try {
+                            NfcVUtil.writeAFI(false);
+                        } catch (IOException e1) {
+                            e.printStackTrace();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else{
+                    listener.onFailure("ERROR", "连接服务器失败");
+                }
+            }
+        }.execute();
+
+    }
+
+    @Override
+    public void returnBook(final String barcode,final ActionCallbackListener<String> listener) {
+
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... voids) {
+
+                return mBookApi.returnBook(barcode);
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+
+                if (listener != null && result != null) {
+                    Log.d("json",result);
+                    try {
+                        listener.onSuccess(result);
+
+                    } catch (Exception e) {
+
+                        listener.onFailure("ERROR", "连接服务器失败");
+                    }
+                }
+                else{
+
+                    listener.onFailure("ERROR", "连接服务器失败");
+                }
+            }
+        }.execute();
+
+    }
+
+    @Override
+    public void loanBookData(final String readerId,final ActionCallbackListener<List<Book>> listener) {
+
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... voids) {
+
+                return mBookApi.loanBookData(readerId);
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+
+                if (listener != null && result != null) {
+                    Log.d("json",result);
+                    try {
+                        bookList = new ArrayList<Book>();
+                        JSONObject json = new JSONObject(result);
+
+                        if (json.getString("loanSize").equals("0")) {
+                            list = new JSONArray();
+                            Log.d("JSON",list.toString());
+                        } else {
+                            list = json.getJSONArray("loanList");
+                            Log.d("JSON",list.toString());
+                        }
+
+                        for (int i = 0; i < list.length(); i++) {
+                            Book b = new Book();
+                            JSONObject jsonObj = list.getJSONObject(i);
+                            b.setBookTitle(jsonObj.getString("title"));
+                            b.setBookBarcode(jsonObj.getString("barcode"));
+                            b.setBookDate(jsonObj.getString("returnDate"));
+                            b.setAuthor(jsonObj.getString("author"));
+                            b.setIsCheck(false);
+                            bookList.add(b);
+                        }
+                        listener.onSuccess(bookList);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else{
+
+                    listener.onFailure("ERROR", "连接服务器失败");
+                }
+            }
+        }.execute();
+    }
+
+
+    public void reloanBook(final String readerId,final String barcode,final ActionCallbackListener<String> listener){
+
+        new AsyncTask<Void, Void, String>() {
+
+            @Override
+            protected String doInBackground(Void... params) {
+                    return mBookApi.reloanBook(readerId,barcode);
+
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                if (listener != null && result != null) {
+                    Log.d("json",result);
+                    try {
+                        listener.onSuccess(result);
+
+                    } catch (Exception e) {
+
+                        listener.onFailure("ERROR", "连接服务器失败");
+                    }
+                }
+                else{
+
+                    listener.onFailure("ERROR", "连接服务器失败");
+                }
+            }
+        }.execute();
+    }
+
+    public void reloanBookMany(final String readerId,final List<Book> books,final ActionCallbackListener<List<ReturnBookResult>> listener) {
+
+        bookResultList =new ArrayList<>();
+        int i;
+        for (i = 0; i < books.size(); i++) {
+
+                final ReturnBookResult returnBookResult = new ReturnBookResult();
+                final int iTemp = i;
+                reloanBook(readerId, books.get(iTemp).getBookBarcode(), new ActionCallbackListener<String>() {
+                    @Override
+                    public void onSuccess(String data) {
+                        try{
+                            JSONObject json = new JSONObject(data);
+                            returnBookResult.setBook(books.get(iTemp));
+                            returnBookResult.setMessage(json.getString("message"));
+                            if(isReload(data)){
+
+                                books.get(iTemp).setBookDate(json.getString("returnDate"));
+                                returnBookResult.setReturnResult(true);
+
+                            }
+                            else{
+                                returnBookResult.setReturnResult(false);
+                            }
+                            bookResultList.add(returnBookResult);
+
+                            if (bookResultList.size()==books.size()){
+                                listener.onSuccess(bookResultList);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(String errorEvent, String message) {
+                        returnBookResult.setBook(books.get(iTemp));
+                        returnBookResult.setMessage("网络不稳定请重试");
+                        returnBookResult.setReturnResult(false);
+                        bookResultList.add(returnBookResult);
+                        if (bookResultList.size()==books.size()){
+                            listener.onSuccess(bookResultList);
+                        }
+                    }
+                });
+
+        }
+
+    }
+
+
+    /**
+     * 判断续借是否成功
+     * @param result
+     * @return
+     */
+    private boolean isReload(String result){
+        try {
+            JSONObject json = new JSONObject(result);
+            if (json.getString("success").equals("true")) {
+
+                return true;
+            } else {
+                return false;
+            }
+        } catch (JSONException e) {
+            return false;
+        }
+    }
+
+    /**
+     * 判断借书结果
+     * @param Barcode
+     * @param json
+     */
+    public Map<String, Object> judgeResult(String Barcode, JSONObject json){
+
+        Map<String, Object> data =new HashMap<>();
+
+        try{
+            data.put("barcode", Barcode);
+            data.put("isCheck",false);
+            if (json.getString("success").equals("true")){
+
+                //排除馆际借还，示例json:{"success":"true","barcode":"0359307","message":"该读者不能在馆际借还该类图书。请去: [YNUL]续借! ]] "}
+                if(json.getString("message").contains("不能在馆际借还")){
+                    data.put("LoanResult",false);
+                    data.put("message",json.getString("message"));
+                }
+                //{"success":"true","barcode":"04400696200829","message":"读者已经续借图书[04400696200829]2次, 不能再续借! ]] 条码[04400696200829]续借后的应还时间小于当前应还时间，不需要续借! ]] "}
+                else if (json.getString("message").contains("不能再续借")){
+                    data.put("LoanResult",false);
+                    data.put("message","条形码:"+Barcode+" 的图书已借，暂不能续借");
+                }
+                else {
+
+                    data.put("LoanResult",true);
+                    try{
+                        data.put("title",json.getString("title"));
+                        data.put("returnDate", json.getString("returnDate"));
+
+                    }catch (JSONException e){
+                        data.put("title","");
+                        data.put("returnDate", "");
+                    }
+                    try{
+                        data.put("message",json.getString("message"));
+                    }
+                    catch (NullPointerException e){
+                        data.put("message","借书成功");
+                    }
+                }
+            }
+            else{
+                data.put("LoanResult", false);
+
+                //排除已经借出状况 示例代码 {"success":"false","message":"借书失败：条码[0359307]状态为: [借出 ].不能外借! ]] "}
+                if(json.getString("message").contains("借出")){
+                    data.put("message", "条形码:"+Barcode+" 的图书已借出");
+                }
+
+                //排除非本馆图书 示例代码{"success":"false","message":"图书条码[04400696200827]没有找到!"}
+                else if (json.getString("message").contains("没有找到")){
+                    data.put("message","条形码:"+Barcode+" 的图书没有找到");
+                }
+                else{
+                    data.put("message",json.getString("message"));
+                }
+
+            }
+
+            return data;
+        }catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+}

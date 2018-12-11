@@ -1,0 +1,666 @@
+[
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_popup_background_mtrl_mult.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_popup_background_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_menu_overflow_material.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/generated/res/pngs/api1/debug/drawable-hdpi/abc_ic_menu_overflow_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_11.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_11.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_popup_background_mtrl_mult.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_popup_background_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_list_longpressed_holo.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_list_longpressed_holo.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_list_focused_holo.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_list_focused_holo.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/chaxun2.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/chaxun2.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/geren2.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/geren2.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_000.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_textfield_default_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_textfield_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/saomiao.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/saomiao.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_5.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_5.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/interliblogo2.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/interliblogo2.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_search_api_material.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/generated/res/pngs/api1/debug/drawable-hdpi/abc_ic_search_api_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/icon_back.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/icon_back.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_list_pressed_holo_dark.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_list_pressed_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/book.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/book.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_6.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_6.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_6.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_6.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_1.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_1.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_11.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_11.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_list_divider_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_list_divider_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_2.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_2.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_star_half_black_36dp.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_star_half_black_36dp.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_menu_overflow_material.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/generated/res/pngs/api1/debug/drawable-hdpi/abc_ic_menu_overflow_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/geren1.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/geren1.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_clear_material.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/generated/res/pngs/api1/debug/drawable-hdpi/abc_ic_clear_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/saomiao.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/saomiao.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_star_half_black_36dp.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_star_half_black_36dp.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_star_black_36dp.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_star_black_36dp.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_spinner_mtrl_am_alpha.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/bookbg.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/bookbg.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/chaxun2.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/chaxun2.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_scrubber_track_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_scrubber_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_textfield_activated_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_textfield_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_list_longpressed_holo.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_list_longpressed_holo.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_list_selector_disabled_holo_dark.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_list_selector_disabled_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/chaxun1.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/chaxun1.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_menu_share_mtrl_alpha.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_menu_share_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_tab_indicator_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_cab_background_top_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_cab_background_top_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_list_selector_disabled_holo_light.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_9.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_textfield_search_default_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_textfield_search_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_list_selector_disabled_holo_dark.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_list_selector_disabled_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_switch_track_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_switch_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_4.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_4.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_menu_selectall_mtrl_alpha.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_menu_selectall_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_10.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_10.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_2.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_2.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/footerbg.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/footerbg.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/jieyue2.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/jieyue2.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/no.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/no.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/geren1.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/geren1.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_btn_radio_to_on_mtrl_000.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_btn_radio_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_scrubber_control_off_mtrl_alpha.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_scrubber_control_off_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/faq.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/faq.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_8.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_8.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_cab_background_top_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_cab_background_top_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_menu_selectall_mtrl_alpha.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_menu_selectall_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_list_focused_holo.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_list_focused_holo.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/jsbtn.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/jsbtn.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/book.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/book.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_5.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_5.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_list_pressed_holo_light.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_list_pressed_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_commit_search_api_mtrl_alpha.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_commit_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/headimg.jpg",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/headimg.jpg"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/jieyue1.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/jieyue1.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_menu_share_mtrl_alpha.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_menu_share_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/unchecked.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/unchecked.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_star_half_black_48dp.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_star_half_black_48dp.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/checked.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/checked.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/active.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/active.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_8.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_8.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_scrubber_control_off_mtrl_alpha.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_scrubber_control_off_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/icon_back_color.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/icon_back_color.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_list_pressed_holo_dark.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_list_pressed_holo_dark.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_12.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_12.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_clear_material.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/generated/res/pngs/api1/debug/drawable-hdpi/abc_ic_clear_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_star_half_black_16dp.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_star_half_black_16dp.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/icon_back_color.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/icon_back_color.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_4.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_4.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_12.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_12.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_star_black_16dp.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_star_black_16dp.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/chaxun1.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/chaxun1.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/jsbtn.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/jsbtn.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_voice_search_api_material.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/generated/res/pngs/api1/debug/drawable-hdpi/abc_ic_voice_search_api_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/no.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/no.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_switch_track_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_switch_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/jieyue2.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/jieyue2.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/xjbtn.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/xjbtn.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_arrow_drop_right_black_24dp.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/generated/res/pngs/api1/debug/drawable-hdpi/abc_ic_arrow_drop_right_black_24dp.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/footerbg.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/footerbg.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_list_selector_disabled_holo_light.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_10.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_10.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_1.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_1.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_search_api_material.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/generated/res/pngs/api1/debug/drawable-hdpi/abc_ic_search_api_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_list_divider_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_list_divider_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/xjbtn.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/xjbtn.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/interliblogo2.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/interliblogo2.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_star_black_48dp.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_star_black_48dp.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_btn_radio_to_on_mtrl_000.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_btn_radio_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_go_search_api_material.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/generated/res/pngs/api1/debug/drawable-hdpi/abc_ic_go_search_api_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/jieyue1.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/jieyue1.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_btn_radio_to_on_mtrl_015.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_btn_radio_to_on_mtrl_015.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/logo.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/logo.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_arrow_drop_right_black_24dp.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/generated/res/pngs/api1/debug/drawable-hdpi/abc_ic_arrow_drop_right_black_24dp.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/yes.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/yes.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_go_search_api_material.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/generated/res/pngs/api1/debug/drawable-hdpi/abc_ic_go_search_api_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_3.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_3.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_015.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_7.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_7.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/bookbg.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/bookbg.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/geren2.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/geren2.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/unchecked.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/unchecked.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_star_half_black_16dp.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_star_half_black_16dp.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_voice_search_api_material.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/generated/res/pngs/api1/debug/drawable-hdpi/abc_ic_voice_search_api_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_015.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/yes.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/yes.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_000.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_star_half_black_48dp.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_star_half_black_48dp.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/checked.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/checked.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_tab_indicator_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/headimg.jpg",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/headimg.jpg"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_7.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_7.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/faq.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/faq.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/qb_tenpay_loading_3.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/qb_tenpay_loading_3.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_spinner_mtrl_am_alpha.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/active.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/active.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/icon_back.png",
+        "source": "/Users/tangjiarao/NFC2/app/src/main/res/drawable-hdpi/icon_back.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_star_black_48dp.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_star_black_48dp.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_textfield_activated_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_textfield_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_star_black_36dp.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_star_black_36dp.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_textfield_default_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_textfield_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_commit_search_api_mtrl_alpha.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_commit_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/logo.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/src/main/res/drawable-hdpi/logo.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_ab_back_material.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/generated/res/pngs/api1/debug/drawable-hdpi/abc_ic_ab_back_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_star_black_16dp.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_star_black_16dp.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_scrubber_track_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_scrubber_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_list_pressed_holo_light.9.png",
+        "source": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_list_pressed_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_ic_ab_back_material.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/generated/res/pngs/api1/debug/drawable-hdpi/abc_ic_ab_back_material.png"
+    },
+    {
+        "merged": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/api1/debug/drawable-hdpi-v4/abc_textfield_search_default_mtrl_alpha.9.png",
+        "source": "/Users/tangjiarao/NFC2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_textfield_search_default_mtrl_alpha.9.png"
+    }
+]

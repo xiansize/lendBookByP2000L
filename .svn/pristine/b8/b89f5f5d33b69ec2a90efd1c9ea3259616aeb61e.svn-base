@@ -1,0 +1,5 @@
+package com.tc.nfc.core;
+
+public interface Listener {
+    public <T> void receiveData(T strings);
+}

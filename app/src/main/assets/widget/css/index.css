@@ -1,0 +1,255 @@
+/*我的订单 start*/
+.header{
+		width: 100%;
+		position: relative;
+		top:0;
+		left: 0;
+		z-index: 4;
+		background: #22292c;
+		padding:1.2rem;
+		box-sizing: border-box;
+	}
+	
+
+ .ret{
+ 	width:1rem;
+ 	height:1rem;
+ 	border-top:0.2rem solid #fff;
+ 	border-left:0.2rem solid #fff; 
+ 	border-radius:0.08rem ; 
+ 	position: absolute; 
+ 	left: 1.8rem; 
+ 	top:48%; 
+ 	-webkit-transform: rotate(-45deg)  translateY(-50%);
+ 	-moz-transform: rotate(-45deg) translateY(-50%); 
+ 	-ms-transform: rotate(-45deg) translateY(-50%); 
+ 	-o-transform: rotate(-45deg) translateY(-50%); 
+ 	transform: rotate(-45deg) translateY(-50%); 
+ 	}
+ 	
+
+.header h3{ 
+	font-size: 1.28rem; 
+	color:#fff; 
+	text-align: center;
+	}
+
+.container{
+	width: 100%;
+	height: 100%;
+	background: url(../image/bg.png) no-repeat;
+	background-size: 100% 100%;
+	overflow: hidden;
+}
+
+.content-area{
+	width: 90%;
+	margin:13rem auto 0;
+	padding :2rem 1.2rem;
+	box-sizing: border-box;
+	background: #edf4f9;
+	border-radius: .2rem;
+	position: relative;
+	box-shadow: 0px 5px 5px rgba(0, 0, 34, 0.49);
+	
+}
+
+.head-area{
+	width: 4.88rem;
+	height: 4.88rem;
+	position: absolute;
+	top:-2.5rem;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.head-area img{
+	border-radius: 100%;
+	border: .5rem solid  #edf4f9;
+}
+
+.mes-con{
+	font-size: 1.12rem;
+	padding:1rem 0 2rem 0;
+}
+
+.mes-in{
+	text-indent: 2em;
+}
+
+.input-group{
+	width:100%;
+	background:#fff;
+	border: 1px solid #007eff;
+	border-radius: .2rem;
+	margin-bottom: 0.8rem;
+}
+
+.ico{
+	width:10%;
+	display: inline-block;
+	padding: 0.5rem 0.2rem 0.2rem 0.2rem;
+	border-right: 1px solid #007eff;
+}
+
+.ico-phone{
+	width: 1.12rem;
+	height: 1.68rem;
+	display: inline-block;
+	background: url(../image/phone.png) no-repeat;
+	background-size: 100% 100%;
+	margin:0 .3rem;
+}
+
+.ico-email{
+	width: 1.44rem;
+	height: 1.44rem;
+	display: inline-block;
+	background:url(../image/email.png) no-repeat;
+	background-size: 100% 100%;
+	margin:0 0.1rem;
+}
+
+.inp{
+	 width: 85%;
+	 display: inline-block;
+     vertical-align: middle;
+     margin-top: -1.3rem;
+	 font-size: 1.12rem;
+}
+
+.confirm-btn a{
+	width: 100%;
+	display: inline-block;
+	text-align: center;
+	background:#ffc731;
+	color:#fff;
+	font-size: 1.44rem;
+	padding:.4rem 0;
+	border-radius: .2rem;
+}
+
+/*反馈内容*/
+.fdback-phone{
+	margin-bottom: 0.8rem;
+}
+
+.phone-tit:before{
+	content: "";
+	width:1.12rem;
+	height: 1.68rem;
+	display: inline-block;
+	vertical-align: middle;
+	background: url(../img/phone.png) no-repeat;
+	background-size: 100% 100%;
+    margin: -.2rem .6rem 0 0;
+}
+
+.feedcon{
+	padding-top: 1.44rem;
+}
+
+.userphone{
+	font-size: 1.28rem;
+}
+
+.feedcon-in{
+	width:100%;
+	height: 12rem;
+	margin-bottom: 1.6rem;
+	border: 1px solid #bfbfbf;
+	box-sizing: border-box;
+	padding:.5rem; 
+	font-size: 1.2rem;
+}
+
+.mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,.3);
+    z-index: 1;
+    display: none;
+    }
+    
+.subsuc,.subfail {
+    width: 80%;
+    background: #fff;
+    font-size: 1.44rem;
+    text-align: center;
+    border-radius: .3rem;
+    position: fixed;
+    top: 28%;
+    left: 50%;
+    transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    z-index: 2;
+    display: none;
+    }
+    
+.subsuctop {
+    padding: 2.8rem 0 1.84rem 0;
+}
+
+.subsuctop span {
+    font-weight: 700;
+    letter-spacing: .2rem;
+    display: inline-block;
+    padding-bottom: .3rem;
+}
+
+.sucbefore{
+    color: #79c144;
+}
+
+.failbefore{
+	color: #e23333;
+}
+
+.sucbefore:before,.failbefore:before{
+    content: "";
+    display: block;
+    width: 5.06rem;
+    height: 5.06rem;
+    margin: 0 auto .9rem;
+}
+
+.sucbefore:before{
+	 background: url(../img/ico-suc.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.failbefore:before{
+	 background: url(../img/ico-fail.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.subsuctop p{
+	font-size: 1.07rem;
+	color: #333;
+	padding: 0 1rem;
+}
+
+.subsucbot {
+    border-top: 1px solid #dce3e6;
+}
+
+.subsucbot p {
+    padding: 1.2rem 0;
+    color: #007eff;
+}
+
+ @media (min-width: 374px) and (max-width: 413px) {
+	.ico-phone{
+		margin-left: .5rem;
+	}
+	
+	.ico-email{
+		margin-left: .3rem;
+	}
+ }

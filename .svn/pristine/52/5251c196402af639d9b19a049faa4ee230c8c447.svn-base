@@ -1,0 +1,151 @@
+package com.tc.nfc.app.adapter;
+
+/**
+ * Created by tangjiarao on 16/7/19.
+ */
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.tc.nfc.R;
+import com.tc.nfc.app.view.AnimatedExpandableListView;
+import com.tc.nfc.model.ChildItem;
+import com.tc.nfc.model.GroupItem;
+import com.tc.nfc.model.ReturnBookResult;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Adapter for our list of {@link GroupItem}s.
+ */
+public class ExampleAdapter extends AnimatedExpandableListView.AnimatedExpandableListAdapter {
+    private LayoutInflater inflater;
+
+    private List<GroupItem> items;
+
+    public interface CheckOnClickListener {
+
+        void onClick(View v,int position,ReturnBookResult data);
+        void reFresh();
+    }
+    private CheckOnClickListener listener;
+    public ExampleAdapter(Context context) {
+        inflater = LayoutInflater.from(context);
+    }
+
+    public void setData(List<GroupItem> items) {
+        this.items = items;
+    }
+
+    public ReturnBookResult getChild(int groupPosition, int childPosition) {
+        return items.get(groupPosition).getItems().get(childPosition);
+    }
+    public long getChildId(int groupPosition, int childPosition) {
+        return childPosition;
+    }
+
+    public View getRealChildView(int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        ChildHolder holder;
+        final ReturnBookResult item = getChild(groupPosition, childPosition);
+        if (convertView == null) {
+            holder = new ChildHolder();
+            convertView = inflater.inflate(R.layout.loadbook_list2, parent, false);
+            holder.title = (TextView) convertView.findViewById(R.id.title);
+            holder.barcode = (TextView) convertView.findViewById(R.id.barcode);
+            holder.returnDate = (TextView) convertView.findViewById(R.id.returnDate);
+            holder.loanResult_btn = (ImageButton)convertView.findViewById(R.id.loanResult_btn);
+            convertView.setTag(holder);
+        } else {
+            holder = (ChildHolder) convertView.getTag();
+        }
+
+        holder.title.setText(item.getBook().getBookTitle());
+        holder.barcode.setText(item.getBook().getBookBarcode());
+        holder.returnDate.setText(item.getBook().getBookDate());
+        if (item.isReturnResult()){
+            holder.loanResult_btn.setImageResource(R.drawable.yes);
+            holder.loanResult_btn.setOnClickListener(null);
+        }
+        else{
+            holder.loanResult_btn.setImageResource(R.drawable.no);
+            holder.loanResult_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    listener.onClick(v, childPosition, item);
+                }
+            });
+        }
+
+        return convertView;
+    }
+
+    @Override
+    public int getRealChildrenCount(int groupPosition) {
+        return items.get(groupPosition).getItems().size();
+    }
+
+
+    public GroupItem getGroup(int groupPosition) {
+        return items.get(groupPosition);
+    }
+
+
+    public int getGroupCount() {
+        return items.size();
+    }
+
+    public long getGroupId(int groupPosition) {
+        return groupPosition;
+    }
+
+
+    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        GroupHolder holder;
+        GroupItem item = getGroup(groupPosition);
+        if (convertView == null) {
+            holder = new GroupHolder();
+            convertView = inflater.inflate(R.layout.group_item, parent, false);
+            holder.title = (TextView) convertView.findViewById(R.id.textTitle);
+            convertView.setTag(holder);
+        } else {
+            holder = (GroupHolder) convertView.getTag();
+        }
+
+        holder.title.setText(item.getBigTitle());
+
+        return convertView;
+    }
+
+
+    public boolean hasStableIds() {
+        return true;
+    }
+
+    public boolean isChildSelectable(int arg0, int arg1) {
+        return true;
+    }
+
+    private static class ChildHolder {
+        TextView title;
+        TextView barcode;
+        TextView returnDate;
+        ImageView iv;
+        ImageButton loanResult_btn;
+
+    }
+
+    private static class GroupHolder {
+        TextView title;
+    }
+
+    public void setAdapterListener(CheckOnClickListener listener) {
+        this.listener = listener;
+    }
+}

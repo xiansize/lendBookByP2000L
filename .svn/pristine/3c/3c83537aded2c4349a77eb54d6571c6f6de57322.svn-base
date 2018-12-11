@@ -1,0 +1,50 @@
+[
+    {
+        "outputFile": "/Users/tangjiarao/NFC2/app/build/intermediates/res/merged/androidTest/api1/debug/values/values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 62,
+                    "endOffset": 113
+                },
+                "from": {
+                    "file": "/Users/tangjiarao/NFC2/app/build/generated/res/resValues/androidTest/api1/debug/values/generated.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 160,
+                        "endColumn": 62,
+                        "endOffset": 218
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/intermediates/res/merged/androidTest/api1/debug/values/values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 62,
+                    "endOffset": 113
+                },
+                "from": {
+                    "file": "/Users/tangjiarao/AndroidStudioProjects/NFC2/app/build/generated/res/resValues/androidTest/api1/debug/values/generated.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 160,
+                        "endColumn": 62,
+                        "endOffset": 218
+                    }
+                }
+            }
+        ]
+    }
+]

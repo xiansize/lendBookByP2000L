@@ -1,0 +1,190 @@
+package com.tc.nfc.api.implement;
+
+import android.util.Log;
+
+
+import com.tc.api.versionSetting;
+import com.tc.nfc.api.interfaces.BookApi;
+import com.tc.nfc.api.utils.ConstantURL;
+import com.tc.nfc.app.utils.App;
+import com.tc.nfc.app.utils.Md5;
+import com.tc.nfc.app.utils.NfcVUtil;
+import com.tc.nfc.app.utils.Utils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.Date;
+
+
+/**
+ * Created by tangjiarao on 16/6/23.
+ */
+public class BookApiImpl implements BookApi {
+
+    private final String TAG = "BookApiImpl";
+
+
+    @Override
+    public String isBookCanLoadn(String readerId,String barcode) {
+        JSONObject json = new JSONObject();
+        try {
+            String rdid = App.reader.getString("rdid");
+            json.put("action", "checkIsCanLoan");
+            json.put("barcode", barcode);
+            if (readerId!=null){
+                Log.d("json","rdid2"+readerId);
+                json.put("rdid", readerId);
+                json.put("keyCode", App.userKeycode[0]);
+                json.put("time", App.userKeycode[1]);
+
+            }else{
+                json.put("rdid", rdid);
+                String[] keycode = App.getKeyCode(rdid);
+                json.put("keyCode", keycode[0]);
+                json.put("time", keycode[1]);
+            }
+
+
+            return Utils.doJsonPost(versionSetting.baseUrl, json.toString());
+        }catch (JSONException e) {
+
+            Log.d(TAG,"JSONException");
+            return null;
+        } catch (Exception e) {
+
+            Log.d(TAG,"IOException");
+            return null;
+        }
+
+    }
+
+    @Override
+    public String loanBook(String readerId,String barcode) {
+
+        JSONObject json = new JSONObject();
+
+        try {
+            long time = new Date().getTime();
+            String rdid = App.reader.getString("rdid");
+            json.put("action", "lendBook");
+            json.put("barcode", barcode);
+
+            if (readerId!=null){
+                Log.d("json","rdid"+readerId);
+                json.put("rdid", readerId);
+                json.put("keyCode", App.userKeycode[0]);
+                json.put("time", App.userKeycode[1]);
+
+            }else{
+                json.put("rdid", rdid);
+                String keycode = new Md5().getMD5ofStr(rdid + App.baseKey + time);
+                json.put("time", time);
+                json.put("keyCode", keycode);
+                Log.d(TAG, "rdid" + rdid + " barcode" + barcode + " time" + time + " keyCode" + keycode);
+            }
+
+
+            return Utils.doJsonPost(versionSetting.baseUrl, json.toString());
+        }catch (JSONException e) {
+
+            Log.d(TAG,"JSONException");
+            return null;
+        } catch (Exception e) {
+            Log.d(TAG,"IOException");
+            return null;
+        }
+    }
+
+    @Override
+    public String returnBook(String barcode) {
+
+        JSONObject json = new JSONObject();
+
+        try {
+            long time = new Date().getTime();
+            String rdid = App.reader.getString("rdid");
+            json.put("action", "returnBook");
+            json.put("rdid", rdid);
+            json.put("barcode", barcode);
+            String keycode = new Md5().getMD5ofStr(rdid + App.baseKey + time);
+            json.put("time", time);
+            json.put("keyCode", keycode);
+
+            Log.d(TAG, "rdid" + rdid + " barcode" + barcode + " time" + time + " keyCode" + keycode);
+
+            return Utils.doJsonPost(versionSetting.baseUrl, json.toString());
+        }catch (JSONException e) {
+
+            Log.d(TAG,"JSONException");
+            return null;
+        } catch (Exception e) {
+            Log.d(TAG,"IOException");
+            return null;
+        }
+    }
+
+    @Override
+    public String loanBookData(String readerId) {
+
+        JSONObject json = new JSONObject();
+        try {
+            json.put("action", ConstantURL.LOAN_BOOK_DATA);
+
+            if (readerId!=null){
+                Log.d("json","rdid"+readerId);
+                json.put("rdid", readerId);
+                json.put("keyCode", App.userKeycode[0]);
+                json.put("time", App.userKeycode[1]);
+
+            }else{
+                json.put("rdid", App.reader.getString("rdid"));
+                String[] keycode = App.getKeyCode(App.reader.getString("rdid"));
+                json.put("keyCode", keycode[0]);
+                json.put("time", keycode[1]);
+            }
+            return Utils.doJsonPost(versionSetting.baseUrl, json.toString());
+        }
+        catch (JSONException e) {
+
+            Log.d(TAG,"JSONException");
+            return null;
+        } catch (Exception e) {
+
+            Log.d(TAG,"IOException");
+            return null;
+        }
+    }
+
+    @Override
+    public String reloanBook(String readerId,String barcode) {
+        JSONObject json = new JSONObject();
+        try {
+            json.put("action", "renewBook");
+            json.put("barcode", barcode);
+
+            if (readerId!=null){
+                Log.d("json","rdid"+readerId);
+                json.put("rdid", readerId);
+                json.put("keyCode", App.userKeycode[0]);
+                json.put("time", App.userKeycode[1]);
+
+            }else{
+                json.put("rdid", App.reader.getString("rdid"));
+                String[] keycode = App.getKeyCode(App.reader.getString("rdid"));
+                json.put("keyCode", keycode[0]);
+                json.put("time", keycode[1]);
+            }
+            return Utils.doJsonPost(versionSetting.baseUrl, json.toString());
+        } catch (JSONException e) {
+            Log.d(TAG,"JSONException");
+            return null;
+        } catch (Exception e) {
+
+            Log.d(TAG,"IOException");
+            return null;
+        }
+    }
+
+}

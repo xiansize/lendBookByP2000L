@@ -1,0 +1,47 @@
+package com.tc.nfc.app.utils;
+
+import android.app.Application;
+
+import com.tc.nfc.core.implement.BookActionImpl;
+import com.tc.nfc.core.implement.CommonActionImpl;
+import com.tc.nfc.core.implement.LoginActionImpl;
+import com.tc.nfc.core.implement.UserActionImpl;
+import com.tc.nfc.core.interfaces.BookAction;
+import com.tc.nfc.core.interfaces.CommonAction;
+import com.tc.nfc.core.interfaces.LoginAction;
+import com.tc.nfc.core.interfaces.UserAction;
+
+/**
+ * Created by tangjiarao on 16/6/23.
+ */
+public class NFCApplication extends Application {
+
+    private LoginAction mLoginAction;
+    private CommonAction mCommonAction;
+    private BookAction mBookAction;
+    private UserAction mUserAction;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mLoginAction = new LoginActionImpl(this);
+        mCommonAction = new CommonActionImpl(this);
+        mBookAction = new BookActionImpl(this);
+        mUserAction = new UserActionImpl(this);
+    }
+
+    public LoginAction getLoginAction() {
+        return mLoginAction;
+    }
+    public CommonAction getCommonAction() {
+
+        return mCommonAction;
+    }
+    public BookAction getBookAction() {
+        return mBookAction;
+    }
+    public UserAction getUserAction() {
+
+        return mUserAction;
+    }
+}

@@ -1,0 +1,94 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.tc.nfc"
+        minSdkVersion 19
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+    }
+    repositories {
+        jcenter()
+
+    }
+
+    dependencies {
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+        testCompile 'junit:junit:4.12'
+
+
+
+
+        compile files('libs/GifView.jar')
+        compile files('libs/systembartint-1.0.3.jar')
+        compile 'com.github.dmytrodanylyk.shadow-layout:library:1.0.3'
+        compile 'com.android.support:cardview-v7:23.2.0'
+
+
+
+
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+            java.srcDirs = ['src/main/java']
+            resources.srcDirs = ['src/main/java']
+            aidl.srcDirs = ['src/main/java']
+            renderscript.srcDirs = ['src/main/java']
+            res.srcDirs = ['src/main/res']
+            assets.srcDirs = ['src/main/assets']
+            jniLibs.srcDirs = ['libs']
+
+        }
+        api1.java.srcDirs = ['src/api1/java']
+        api1.res.srcDirs = ['src/api1/res']
+
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
+
+    productFlavors {
+
+        api1 {
+            applicationId "com.tc.nfc.admin"
+            resValue "string", "app_name", "手机借书"
+        }
+        api2 {
+            applicationId "com.tc.nfc.reader"
+            resValue "string", "app_name", "手机借书"
+        }
+
+    }
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [CHANNEL_VALUE: name]
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:23.2.0'
+    compile 'com.android.support:design:23.2.0'
+    compile 'com.tomergoldst.android:tooltips:1.0.1'
+    compile 'com.github.razerdp:BasePopup:v1.1.7'
+
+}

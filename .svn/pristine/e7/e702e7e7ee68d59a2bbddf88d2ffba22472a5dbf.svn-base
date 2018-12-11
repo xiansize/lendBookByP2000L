@@ -1,0 +1,12 @@
+package com.tc.nfc.api.interfaces;
+
+import org.json.JSONObject;
+
+/**
+ * Created by tangjiarao on 16/6/23.
+ */
+public interface UserApi {
+
+    public String getUserInfo();
+    public String getReaderInfo(String readerId);
+}

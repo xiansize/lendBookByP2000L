@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/tangjiarao/NFC2/app/src/androidTest/assets"/></dataSet><dataSet config="api1"><source path="/Users/tangjiarao/NFC2/app/src/androidTestApi1/assets"/></dataSet></merger>

@@ -1,0 +1,252 @@
+package com.tc.nfc.app.activity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.tc.nfc.R;
+import com.tc.nfc.app.adapter.ReloadAdapter;
+import com.tc.nfc.app.utils.App;
+import com.tc.nfc.app.utils.NFCApplication;
+import com.tc.nfc.app.view.LoadingView;
+import com.tc.nfc.app.view.SmoothCheckBox;
+import com.tc.nfc.core.listener.ActionCallbackListener;
+import com.tc.nfc.model.Book;
+import com.tc.nfc.model.ReturnBookResult;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class ReLoanActivity extends BaseActivity implements  OnClickListener {
+	private final String TAG ="ReLoanActivity";
+
+	public NFCApplication mNFCApplication;
+	private Context context;
+	private ReLoanActivity that;
+	private View view;
+	private ListView listview;
+	private ImageView animationIV;
+	private TextView nodata,title;
+	private ReloadAdapter reloadAdapter;
+	private Button reloan_btn,all_check_btn;
+	private LinearLayout backImage;
+	private RelativeLayout contentLayout;
+	private LoadingView loadingView;
+	private boolean IS_ALL_CHECK=false;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		initView();
+
+	}
+	@Override
+	protected void initContentView(Bundle savedInstanceState) {
+		setContentView(R.layout.activity_reloan);
+		mNFCApplication =(NFCApplication)this.getApplication();
+	}
+
+	public void onResume() {
+		super.onResume();
+
+	}
+
+	public void onPause() {
+		super.onPause();
+	}
+
+	public void initView(){
+
+		mNFCApplication =(NFCApplication)this.getApplication();
+		context = this.getApplicationContext();
+		title = (TextView) findViewById(R.id.title);
+
+		title.setText("我的借阅");
+		listview = (ListView) findViewById(R.id.reloanList);
+		animationIV = (ImageView) findViewById(R.id.animationIV);
+		animationIV.setBackgroundResource(R.drawable.load_animation_1);
+		nodata = (TextView) findViewById(R.id.nodata);
+		AnimationDrawable AniDraw = (AnimationDrawable) animationIV.getBackground();
+		AniDraw.start();
+		that = this;
+		reloan_btn =(Button)findViewById(R.id.reloadBtn);
+		all_check_btn=(Button)findViewById(R.id.allCheckBtn);
+
+		backImage = (LinearLayout)findViewById(R.id.backbutton);
+		contentLayout=(RelativeLayout)findViewById(R.id.content);
+		loadingView = new LoadingView(this);
+		backImage.setOnClickListener(this);
+		loanBookData(App.readerId);
+	}
+
+	/**
+	 * 获取已借书目数据
+	 */
+	public void loanBookData(String readerId){
+
+
+		mNFCApplication.getBookAction().loanBookData(readerId,new ActionCallbackListener<List<Book>>() {
+
+			@Override
+			public void onSuccess(List<Book> bookList) {
+
+				animationIV.setVisibility(View.GONE);
+				disappearShade();
+				if (bookList.size() == 0) {
+
+					nodata.setText("没有数据");
+					listview.setVisibility(View.GONE);
+				}
+
+				reloadAdapter = new ReloadAdapter(that, bookList);
+				listview.setAdapter(reloadAdapter);
+				//listview.setOnScrollListener(that);
+				listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+						Book book = (Book) ((ListView) parent).getAdapter().getItem(position);
+						book.setIsCheck(!book.getIsCheck());
+						SmoothCheckBox checkBox = (SmoothCheckBox) view.findViewById(R.id.checkbox);
+						checkBox.setChecked(book.getIsCheck(), true);
+
+					}
+				});
+				reloan_btn.setOnClickListener(that);
+				all_check_btn.setOnClickListener(that);
+
+			}
+
+			public void onFailure(String errorEvent, String message) {
+				Toast toast = Toast.makeText(that, "连接服务器失败", Toast.LENGTH_SHORT);
+				toast.show();
+				animationIV.setVisibility(View.GONE);
+				disappearShade();
+			}
+
+		});
+	}
+	public void reloanBookMany(String readerId){
+		appearShade();
+		mNFCApplication.getBookAction().reloanBookMany(readerId, getReloanList(), new ActionCallbackListener<List<ReturnBookResult>>() {
+
+			@Override
+			public void onSuccess(List<ReturnBookResult> data) {
+
+				disappearShade();
+				Intent intent = new Intent();
+				intent.putExtra("list", (Serializable) data);
+				intent.setClass(that, reLoanResultActivity.class);
+				startActivity(intent);
+
+			}
+
+			@Override
+			public void onFailure(String errorEvent, String message) {
+				disappearShade();
+			}
+		});
+	}
+	
+	public void onClick(View v) {
+
+		switch (v.getId()) {
+			case R.id.reloadBtn:
+				if (getReloanList().size()!=0)
+					reloanBookMany(App.readerId);
+				break;
+			case R.id.backbutton:
+				//startActivity(MainActivity.class);
+				this.finish();
+				break;
+			case R.id.allCheckBtn:
+				IS_ALL_CHECK=!IS_ALL_CHECK;
+				if (IS_ALL_CHECK){
+					all_check_btn.setText("取消全选");
+				}
+				else{
+					all_check_btn.setText("全选");
+				}
+				List<Book> bookList =reloadAdapter.getListData();
+
+				for (int i=0;i<bookList.size();i++){
+					bookList.get(i).setIsCheck(IS_ALL_CHECK);
+				}
+				reloadAdapter.setListData(bookList);
+				reloadAdapter.notifyDataSetChanged();
+				break;
+		}
+
+	}
+	/**
+	 * 跳转页面
+	 * @param activityClass 目标页面Class
+	 */
+	public void startActivity(Class activityClass){
+		Intent intent = new Intent();
+		intent.setClass(this, activityClass);
+		startActivity(intent);
+	}
+
+	/**
+	 * 打开覆盖层加载loading
+	 */
+	public void appearShade(){
+
+		reloan_btn.setEnabled(false);
+		all_check_btn.setEnabled(false);
+		contentLayout.addView(loadingView);
+		loadingView.startAppearAnimation();
+	}
+
+	/**
+	 * 取消loading，关闭覆盖层
+	 */
+	public void disappearShade(){
+
+		loadingView.startDisappearAnimation();
+		loadingView.getDisappearAnimation().setAnimationListener(new Animation.AnimationListener() {
+			@Override
+			public void onAnimationStart(Animation animation) {
+
+			}
+
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				contentLayout.removeView(loadingView);
+				reloan_btn.setEnabled(true);
+				all_check_btn.setEnabled(true);
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+			}
+		});
+	}
+
+	public List<Book> getReloanList(){
+		List<Book> bookList= reloadAdapter.getListData();
+		List<Book> newBookList= new ArrayList<>();
+		for (int i=0;i<bookList.size();i++){
+			if (bookList.get(i).getIsCheck()){
+				newBookList.add(bookList.get(i));
+			}
+		}
+		return newBookList;
+	}
+
+}

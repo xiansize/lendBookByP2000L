@@ -1,0 +1,24 @@
+package com.tc.nfc.core.interfaces;
+
+import com.tc.nfc.core.listener.ActionCallbackListener;
+
+import org.json.JSONObject;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by tangjiarao on 16/6/23.
+ */
+public interface UserAction {
+
+    /**
+     * 获取用户信息
+     * @param listener
+     */
+    public void getUserInfo(ActionCallbackListener<JSONObject> listener);
+
+    public void getReaderInfo(String readerId,ActionCallbackListener<JSONObject> listener);
+
+
+}

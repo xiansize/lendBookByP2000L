@@ -1,0 +1,236 @@
+package com.tc.nfc.api.utils;
+
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.tc.api.versionSetting;
+import com.tc.nfc.app.utils.App;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+
+/**
+ * Created by tangjiarao on 16/6/2.
+ */
+public class updateAppUtil {
+
+
+    private static Context mContext;
+    private static ProgressDialog progressDialog;
+    private static final String  DIRECTORY_NAME = "/newApp";
+    private static final String  File_NAME = "NewVersion.apk";
+    private static final String  TAG = "updateAppUtil";
+
+    /**
+     * 获取软件版本号
+     * @param context
+     * @return
+     */
+    public static int getAppVersion(Context context) {
+
+        mContext =context;
+        int versionCode = 0;
+        try {
+        	PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);  
+            // 当前应用的版本名称  
+            //String versionName = info.versionName;  
+            // 当前版本的版本号  
+            versionCode = info.versionCode;  
+            // 当前版本的包名  
+            //String packageNames = info.packageName;  
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e("msg", e.getMessage());
+        }
+        return versionCode;
+    }
+
+    /**
+     * 获取服务器的版本号
+     * @param context
+     */
+    public static void getServerVersion(Context context){
+
+        new CommonAsyncTask(context).execute("post", versionSetting.GET_SERVER_IP,versionSetting.interfaceName);
+
+    }
+
+    /**
+     * 创建文件路径
+     */
+    public static File getDirectory(){
+
+        File file = new File(Environment.getExternalStorageDirectory() + DIRECTORY_NAME);
+        //如果该路径不存在，则创建文件夹
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        return file;
+    }
+
+    /**
+     * 获取目标路径下的文件
+     * @param root
+     */
+    public static void getAllFiles(File root){
+
+        File files[] = root.listFiles();
+
+        if(files != null)
+            for(File f:files){
+
+                if(f.isDirectory()){
+                    getAllFiles(f);
+                }
+                else{
+                    Log.d(TAG, f.getName());
+
+                }
+            }
+    }
+    public static void downNewApp(String path,ProgressDialog mProgressDialog) {
+
+        progressDialog =mProgressDialog;
+        progressDialog.show();
+        new Thread() {
+            public void run() {
+                URL url = null;
+                FileOutputStream fos = null;
+                BufferedInputStream bis = null;
+                HttpURLConnection connection = null;
+                try {
+                    url = new URL(versionSetting.DOWN_NEW_APP);
+                    connection = (HttpURLConnection) url.openConnection();
+
+                    //不能获取服务器响应
+                    if (HttpURLConnection.HTTP_CREATED != connection.getResponseCode()) {
+                        Message message = Message.obtain();
+                        message.what = 1;
+                        handler.sendMessage(message);
+                    }
+                    //不存在sd卡
+                    else if (Environment.getExternalStorageState()
+                            .equals(Environment.MEDIA_UNMOUNTED)){
+                        Message message=Message.obtain();
+                        message.what=2;
+                        handler.sendMessage(message);
+                    }
+                    //满足上两个条件
+                    else{
+                        //获取网络输入流
+                        bis = new BufferedInputStream(connection.getInputStream());
+                        //文件大小
+                        int length = connection.getContentLength();
+                        progressDialog.setMax((int)length);
+                        //缓冲区大小
+                        byte[] buf = new byte[1024];
+                        int size =0;
+
+                        //获取存储文件的路径，在该路径下新建一个文件为写入流作准备
+                        File cfile = new File(getDirectory().getPath(), File_NAME);
+                        //如果不存在则新建文件
+                        if (!cfile.exists()) {
+                            cfile.createNewFile();
+                        }
+                        //将流与文件绑定
+                        fos = new FileOutputStream(cfile);
+
+                        //记录进度条
+                        int count=0;
+                        //保存文件
+                        while ((size = bis.read(buf)) != -1) {
+                            fos.write(buf, 0, size);
+                            count += size;
+                            if (length > 0) {
+                                progressDialog.setProgress(count);
+                            }
+                        }
+                        Log.d("JSON",count+"");
+                        Log.d("JSON","HAHA"+cfile.getAbsolutePath()+cfile.getName());
+                        Bundle bundle=new Bundle();
+                        Message message=Message.obtain();
+                        message.what=3;
+                        bundle.putString("msg", cfile.getAbsolutePath());
+                        message.setData(bundle);
+                        handler.sendMessage(message);
+                    }
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }finally {
+                    try {
+                        if (fos!= null) {
+                            fos.close();
+                        }
+                        if (bis != null) {
+                            bis.close();
+                        }
+                        if (connection!= null) {
+                            connection.disconnect();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        }.start();
+
+    }
+
+    private static Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    Toast.makeText(mContext, "网络状态不可用", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "网络不通");
+                    break;
+                case 2:
+                    Toast.makeText(mContext, "请插入SD卡", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "没有sd卡");
+
+                    break;
+                case 3:
+                    Bundle bundle = msg.getData();
+                    String fileName = bundle.getString("msg");
+                    installAPK(fileName,mContext);
+
+                    Log.d(TAG, "已经下载");
+
+                    break;
+
+                default:
+                    break;
+            }
+        };
+    };
+    private static void installAPK(String fileName,Context mContext){
+        File file =new File(fileName);
+        if(!file.exists()){
+            return;
+        }
+        Intent intent=new Intent();
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setAction(Intent.ACTION_VIEW);
+        Log.d(TAG,"AA"+"file://"+file.toString());
+        intent.setDataAndType(Uri.parse("file://"+file.toString()), "application/vnd.android.package-archive");
+        mContext.startActivity(intent);
+    }
+}

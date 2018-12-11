@@ -1,0 +1,67 @@
+package com.tc.nfc.app.adapter;
+
+import java.util.List;
+import java.util.Map;
+
+
+import android.content.Context;
+import android.graphics.Color;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.tc.nfc.R;
+
+public class BookLoadAdapter extends HolderAdapter<Map<String, Object>, BookLoadAdapter.ViewHolder>{  
+
+    private List<Map<String, Object>> listData;
+    
+  public BookLoadAdapter(Context context, List<Map<String, Object>> listData) {  
+      super(context, listData);
+      this.listData =listData;
+  }  
+
+  @Override  
+  public View buildConvertView(LayoutInflater layoutInflater,Map<String, Object> t, int position) {  
+      return inflate(R.layout.loadbook_list);
+  }  
+
+  @Override  
+  public ViewHolder buildHolder(View convertView,Map<String, Object> t, int position) {  
+      ViewHolder holder = new ViewHolder();  
+      holder.image = (ImageView)convertView.findViewById(R.id.image);  
+      holder.title = (TextView)convertView.findViewById(R.id.title);  
+      holder.barcode = (TextView)convertView.findViewById(R.id.barcode);  
+      holder.author = (TextView)convertView.findViewById(R.id.author);  
+      holder.returnDate = (TextView)convertView.findViewById(R.id.returnDate);  
+      holder.reloan = (TextView)convertView.findViewById(R.id.reloan);  
+      return holder;  
+  }  
+
+  @Override  
+  public void bindViewDatas(ViewHolder holder,Map<String, Object> t, int position) {  
+        
+	  holder.title.setText(t.get("title").toString());  
+	  holder.barcode.setText(t.get("barcode").toString());  
+	  holder.author.setText(t.get("author").toString());  
+	  holder.returnDate.setText(t.get("returnDate").toString()); 
+	  if(t.get("reloan")!=null){
+		  holder.reloan.setText(t.get("reloan").toString()); 
+		  if(t.get("reloan").toString().equals("续借成功"))
+		  	holder.reloan.setTextColor(Color.parseColor("#48D1CC"));
+		  else
+			holder.reloan.setTextColor(Color.parseColor("#FF6A6A")); 
+	  }
+		  
+  }  
+    
+
+  public static class ViewHolder {  
+        
+	  ImageView image;
+	  TextView title,barcode,author,returnDate,reloan;
+//      TextView tv;  
+  }
+
+}  

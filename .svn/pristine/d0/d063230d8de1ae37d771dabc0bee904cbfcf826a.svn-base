@@ -1,0 +1,54 @@
+package com.tc.nfc.api.utils;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import com.tc.nfc.app.utils.Md5;
+
+import org.json.JSONObject;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Date;
+
+public class ConstantURL {
+
+	//public static String baseUrl = "http://qp999.com.cn/PurReference/appInterface";
+	public static String baseUrl = "http://192.168.0.160:88/PurReference/appInterface";
+	//public static String baseUrl = "http://183.63.126.165:8081/PurReference/appInterface";
+
+	public static String baseKey = "NFC_lend!@#";
+	public static String JSESSIONID;
+	public static JSONObject reader;
+
+	//获取服务器上app版本地址
+	public static String GET_SERVER_IP = "http://192.168.0.62:4000/getVersion";
+	//下载新版本app地址
+	//public static String DOWN_NEW_APP = "http://a.app.qq.com/o/simple.jsp?pkgname=com.nfc";
+	public static String DOWN_NEW_APP = "http://192.168.0.62:4000/updateApp";
+
+
+	/**
+	 * api名称
+	 */
+	//LoginApi
+	public final static String LOGIN = "login";
+	//BookApi LoanBookData
+	public final static String LOAN_BOOK_DATA = "myloan";
+
+
+
+	/**
+	 * 获取密钥
+	 * 
+	 * @param rdid
+	 * @return
+	 */
+	public static String[] getKeyCode(String rdid) {
+		long time = new Date().getTime();
+		String keycode = new Md5().getMD5ofStr(rdid + baseKey + time);
+		String[] result = new String[] { keycode, String.valueOf(time) };
+		return result;
+	}
+}

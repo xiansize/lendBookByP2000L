@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="#ffffff"
+	android:orientation="vertical">
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1px"
+		android:background="#c9c9c9"/>
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<ImageView
+			android:id="@+id/notice"
+			android:layout_width="25dp"
+			android:layout_height="25dp"
+			android:layout_alignParentTop="true"
+			android:layout_alignParentRight="true"
+			android:gravity="center"
+			android:padding="5dp"
+			android:src="@drawable/start_icon32"
+			android:background="@drawable/inventory_notice_bg"/>
+		<ImageView
+			android:id="@+id/image"
+			android:layout_width="70dp"
+			android:layout_height="90dp"
+			android:layout_alignParentLeft="true"
+			android:layout_centerVertical="true"
+			android:layout_below="@+id/notice"
+			android:layout_marginTop="10dp"
+			android:src="@drawable/bookbg" />
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="2dip"
+			android:layout_marginBottom="2dip"
+			android:layout_marginLeft="15dip"
+			android:layout_marginRight="15dip"
+			android:layout_toRightOf="@+id/image"
+			android:layout_toLeftOf="@+id/singleShelveBtn"
+			android:orientation="vertical">
+
+				<TextView
+					android:id="@+id/tv_title_activity"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textColor="#333333"
+					android:textIsSelectable="true"
+					android:textSize="18sp" />
+
+				<TextView
+					android:id="@+id/barcode"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="2dp"
+					android:textIsSelectable="true"
+					android:textColor="#999999"
+					android:textSize="14sp" />
+				<TextView
+					android:id="@+id/Publisher"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="2dp"
+					android:textIsSelectable="true"
+					android:textColor="#999999"
+					android:textSize="14sp" />
+				<TextView
+					android:id="@+id/pubdate"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="2dp"
+					android:textIsSelectable="true"
+					android:textColor="#999999"
+					android:textSize="14sp" />
+				<TextView
+					android:id="@+id/referenceNum"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="2dp"
+					android:textIsSelectable="true"
+					android:textColor="#999999"
+					android:textSize="14sp" />
+				<TextView
+					android:id="@+id/isbn"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="2dp"
+					android:textIsSelectable="true"
+					android:textColor="#999999"
+					android:textSize="14sp" />
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+					<TextView
+						android:id="@+id/shelfno"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="2dp"
+						android:textIsSelectable="true"
+						android:textColor="#999999"
+						android:textSize="14sp" />
+					<TextView
+						android:id="@+id/shelfno_now"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="10dp"
+						android:layout_marginTop="2dp"
+						android:textIsSelectable="true"
+						android:textColor="#e66767"
+						android:textSize="14sp" />
+				</LinearLayout>
+
+				<LinearLayout
+					android:id="@+id/res_layout"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:layout_marginBottom="10dp"
+					android:orientation="horizontal">
+
+					<ImageView
+						android:id="@+id/littleImage"
+						android:layout_width="15dp"
+						android:layout_height="15dp"
+						android:layout_gravity="center_vertical"/>
+					<TextView
+						android:id="@+id/littleText"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="10dp"
+						android:textSize="14sp"
+						android:layout_gravity="center_vertical"/>
+
+				</LinearLayout>
+
+		</LinearLayout>
+		<Button
+			android:id="@+id/singleShelveBtn"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/btn_ok_selector"
+			android:padding="6dp"
+			android:textSize="14sp"
+			android:textColor="#fff"
+			android:text="上架"
+			android:layout_alignParentRight="true"
+			android:layout_centerVertical="true"
+			android:layout_marginRight="20dp"
+			/>
+
+	</RelativeLayout>
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1px"
+		android:background="#c9c9c9"/>
+</LinearLayout>

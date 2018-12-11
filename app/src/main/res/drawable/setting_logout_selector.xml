@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape>
+            <!--颜色改变-->
+            <solid android:color="@color/setting_logout_press"></solid>
+            <!--圆角设置-->
+            <corners android:radius="0dp"></corners>
+            <stroke
+                android:width="0.01dp"
+                android:color="#999" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <!--颜色改变-->
+            <solid android:color="@color/setting_logout_normal"></solid>
+            <!--圆角设置-->
+            <corners android:radius="0dp"></corners>
+            <stroke
+                android:width="0.01dp"
+                android:color="#999" />
+        </shape>
+    </item>
+</selector>

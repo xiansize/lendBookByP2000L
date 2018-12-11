@@ -1,0 +1,153 @@
+package com.tc.nfc.app.fragment;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.content.Intent;
+import android.os.Bundle;
+
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.tc.api.versionSetting;
+import com.tc.nfc.R;
+import com.tc.nfc.app.activity.LoginActivity;
+import com.tc.nfc.app.utils.App;
+import com.tc.nfc.app.utils.NFCApplication;
+import com.tc.nfc.core.listener.ActionCallbackListener;
+
+public class MyFragment extends Fragment implements OnClickListener {
+
+	private final String TAG ="MyFragment";
+	private View view;
+	private TextView title,uid,name,loanedNum,maxLoanNum,score,money,gb_loanedNum;
+	private MyFragment that;
+	public NFCApplication mNFCApplication;
+	private LinearLayout persional,payLayout,book,loginout;
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		view = inflater.inflate(R.layout.fragment_my_new, container, false);
+		initView();
+
+		return view;
+	}
+
+	public void initView(){
+
+		mNFCApplication =(NFCApplication)getActivity().getApplication();
+		title = (TextView) view.findViewById(R.id.title);
+		title.setText(versionSetting.mTextArray[2]);
+
+		uid = (TextView) view.findViewById(R.id.uid);
+		name = (TextView) view.findViewById(R.id.name);
+		persional = (LinearLayout) view.findViewById(R.id.persional);
+		persional.setVisibility(View.VISIBLE);
+		if (!versionSetting.IS_ASMIN){
+
+			score = (TextView) view.findViewById(R.id.score);
+			money = (TextView) view.findViewById(R.id.money);
+			loanedNum = (TextView) view.findViewById(R.id.loanedNum);
+			maxLoanNum = (TextView) view.findViewById(R.id.maxLoanNum);
+			gb_loanedNum = (TextView) view.findViewById(R.id.gb_loanedNum);
+			payLayout = (LinearLayout) view.findViewById(R.id.pay);
+			book = (LinearLayout) view.findViewById(R.id.book);
+			payLayout.setVisibility(View.VISIBLE);
+			book.setVisibility(View.VISIBLE);
+		}
+
+		loginout = (LinearLayout)view.findViewById(R.id.loginout);
+		loginout.setOnClickListener(this);
+		loginout.setVisibility(View.VISIBLE);
+		that = this;
+		getUserInfo();
+
+	}
+
+	private void getUserInfo() {
+		mNFCApplication.getUserAction().getUserInfo(new ActionCallbackListener<JSONObject>(){
+
+			@Override
+			public void onSuccess(JSONObject data) {
+				Log.d(TAG, "SUCCESS");
+				try {
+					uid.setText(data.getString("rdid").toString());
+					name.setText(data.getString("rdname").toString());
+
+					if (!versionSetting.IS_ASMIN) {
+
+						score.setText(data.getString("score").toString());
+						money.setText(data.getString("money").toString());
+						gb_loanedNum.setText(data.getInt("gb_loanedNum") + "");
+						loanedNum.setText(data.getInt("loanedNum") + "");
+						maxLoanNum.setText(data.getInt("maxLoanNum") + "");
+					}
+
+				} catch (JSONException e) {
+
+					Log.d(TAG,"JSON解析错误");
+				}
+			}
+
+			@Override
+			public void onFailure(String errorEvent, String message) {
+				Log.d(TAG, "FAIL");
+
+				uid.setText("");
+				name.setText("");
+
+				if (!versionSetting.IS_ASMIN) {
+
+					score.setText("");
+					money.setText("");
+					gb_loanedNum.setText("" );
+					loanedNum.setText("" );
+					maxLoanNum.setText("");
+				}
+
+				Toast toast = Toast.makeText(that.getActivity(), "连接服务器失败", Toast.LENGTH_SHORT);
+				toast.show();
+			}
+		});
+	}
+
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.loginout:
+			App.JSESSIONID = null;
+			that.getActivity().finish();
+			login();
+			System.out.println("退出登录");
+			break;
+		}
+
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+	}
+
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+	}
+
+	// 跳转到登录页面
+	public void login() {
+		Intent intent = new Intent();
+		intent.setClass(getActivity(), LoginActivity.class);
+		startActivity(intent);
+	}
+
+}

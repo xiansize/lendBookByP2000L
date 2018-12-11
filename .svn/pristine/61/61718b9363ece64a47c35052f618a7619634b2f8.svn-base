@@ -1,0 +1,214 @@
+package com.tc.nfc.api.utils;
+
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.util.Log;
+
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.Map;
+
+public class NetworkHelp {
+
+    private static final String TAG ="NetworkHelp";
+    private static final int TIMEOUT_MILLIONS = 8000;
+    /**
+     * 判断网络是否连接
+     *
+     * @param context
+     * @return
+     *
+     */
+    public static boolean isConnected(Context context)
+    {
+        ConnectivityManager connectivity = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (null != connectivity)
+        {
+            NetworkInfo info = connectivity.getActiveNetworkInfo();
+            if (null != info && info.isConnected())
+            {
+                if (info.getState() == NetworkInfo.State.CONNECTED)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 判断是否是wifi连接
+     */
+    public static boolean isWifi(Context context)
+    {
+        ConnectivityManager connectivity = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (connectivity == null)
+
+            return false;
+
+        return connectivity.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
+    }
+
+    /**
+     * Get funtion
+     * @param encode
+     * @param path
+     * @return
+     */
+    public static String getDataByGet(String encode, String path){
+
+        URL url =null;
+
+        HttpURLConnection connection =null;
+
+        InputStream inptStream =null;
+
+        int responseCode;
+
+        try {
+            url = new URL(path);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setReadTimeout(TIMEOUT_MILLIONS);
+            connection.setConnectTimeout(TIMEOUT_MILLIONS);
+            connection.setDoInput(true);
+            connection.setUseCaches(false);
+
+            responseCode = connection.getResponseCode();
+            if(responseCode == HttpURLConnection.HTTP_OK) {
+                inptStream = connection.getInputStream();
+
+                Log.d(TAG,"GET FUNCTION OK");
+                return dealResponseResult(inptStream,encode);
+
+            }
+
+        } catch (IOException e) {
+            return "err: " + e.getMessage().toString();
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                if (inptStream != null) {
+                    inptStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return "";
+    }
+
+    public static String sendDataByPost(Map<String, String> params, String encode, String path) {
+
+        URL url=null;
+
+        HttpURLConnection connection = null;
+
+        OutputStream outputStream = null;
+
+        InputStream inputStream = null;
+
+
+        int responseCode;
+
+        byte [] data = getRequestData(params, encode).toString().getBytes();
+
+        try {
+            url = new URL(path);
+
+            connection = (HttpURLConnection)url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setConnectTimeout(TIMEOUT_MILLIONS);
+            connection.setReadTimeout(TIMEOUT_MILLIONS);
+            connection.setDoInput(true);
+            connection.setDoOutput(true);
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setRequestProperty("Content-Length", String.valueOf(data.length));
+
+            outputStream = connection.getOutputStream();
+            outputStream.write(data, 0, data.length);
+
+            responseCode = connection.getResponseCode();
+
+            if (responseCode == 200) {
+
+                Log.d(TAG,"POST FUNCTION OK");
+                inputStream = connection.getInputStream();
+                return dealResponseResult(inputStream, encode);
+            }
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                if (outputStream != null) {
+                    outputStream.close();
+                }
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+                if (connection != null) {
+                    connection.disconnect();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return "";
+    }
+
+
+
+    public static StringBuffer getRequestData(Map<String, String> params, String encode) {
+        StringBuffer buffer = new StringBuffer();
+
+        try {
+            for (Map.Entry<String, String> entry : params.entrySet()) {
+
+
+                buffer.append(entry.getKey())
+                        .append("=")
+                        .append(URLEncoder.encode(entry.getValue(), encode))
+                        .append("&");
+            }
+
+            buffer.deleteCharAt(buffer.length() - 1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return buffer;
+    }
+
+    public static String dealResponseResult(InputStream inputStream, String encode) {
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        byte [] data = new byte[1024];
+        int lenngth = 0;
+
+        try {
+            while ((lenngth = inputStream.read(data)) != -1) {
+                byteArrayOutputStream.write(data, 0, lenngth);
+            }
+            return new String(byteArrayOutputStream.toByteArray(), encode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+
+}

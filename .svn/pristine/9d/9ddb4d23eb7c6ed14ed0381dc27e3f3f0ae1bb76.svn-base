@@ -1,0 +1,243 @@
+package com.tc.nfc.app.activity;
+
+import android.content.Intent;
+import android.nfc.NfcAdapter;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.animation.Animation;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.tc.nfc.R;
+import com.tc.nfc.api.utils.Constant;
+import com.tc.nfc.app.utils.App;
+import com.tc.nfc.app.utils.NFCApplication;
+import com.tc.nfc.app.view.LoadingView;
+import com.tc.nfc.core.listener.ActionCallbackListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+public class CheckReaderActivity extends BaseActivity implements View.OnClickListener{
+
+    private final String TAG ="CheckReaderActivity";
+    private final String haha ="CheckReaderActivity";
+    private final String TheiheiAG ="CheckReaderActivity";
+    public NFCApplication mNFCApplication;
+    private FrameLayout layout = null;
+    private View view;
+    private TextView titleTV,operaTV;
+    private LinearLayout backImage;
+
+    //图书条形码
+    private String Barcode;
+    private String readerName;
+    private String readerId;
+    //标志是否正在验证读者，如果正在验证读者，则即使扫描到条码也不操作
+    private Boolean IS_DO_ACTIO =false;
+
+    //loading
+    private LoadingView loadingView =null;
+
+    private int readerAction;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initViews();
+    }
+
+    @Override
+    protected void initContentView(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_scan);
+        mNFCApplication =(NFCApplication)this.getApplication();
+
+    }
+
+    public void initViews(){
+
+        readerAction=getIntent().getIntExtra("readerAction",0);
+        titleTV =(TextView)findViewById(R.id.title);
+        titleTV.setText("录入读者");
+        operaTV =(TextView)findViewById(R.id.operaText);
+        backImage = (LinearLayout)findViewById(R.id.backbutton);
+        backImage.setOnClickListener(this);
+        layout = (FrameLayout)findViewById(R.id.scanFrame);
+
+
+    }
+    /**
+     * 接受NFC请求
+     * @param intent
+     */
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(intent.getAction())) {
+            processIntent(intent);
+        }
+    }
+
+    /**
+     * 处理NFC请求
+     * @param intent
+     */
+    private void processIntent(Intent intent) {
+        //1.解析获取Barcode
+        Barcode = mNFCApplication.getBookAction().getNFCBarcode(intent);
+        if (Barcode!=null&&!IS_DO_ACTIO){
+            changeReader();
+        }
+
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.backbutton:
+                //startActivity(MainActivity.class);
+                this.finish();
+                break;
+
+            case R.id.recheckBtn:
+
+                disappearShade();
+                break;
+
+            case R.id.loanBtn:
+
+                if (readerAction== Constant.LOAN_ACTION)
+                    startActivity(LoanActivity.class);
+                else if (readerAction==Constant.RETURN_ACTION)
+                    startActivity(ReturnActivity.class);
+                else if (readerAction==Constant.RELOAN_ACTION)
+                    startActivity(ReLoanActivity.class);
+
+                this.finish();
+                break;
+        }
+    }
+
+    /**
+     * 切换用户
+     */
+    private void changeReader() {
+
+        appearShade(false);
+        mNFCApplication.getUserAction().getReaderInfo(Barcode,new ActionCallbackListener<JSONObject>() {
+
+            @Override
+            public void onSuccess(JSONObject data) {
+                Log.d(TAG, data.toString());
+                try {
+                    readerName = data.getString("rdname").toString();
+                    readerId = data.getString("rdid").toString();
+                    appearShade(true);
+                } catch (JSONException e) {
+
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(String errorEvent, String message) {
+                appearShade(false);
+            }
+        });
+    }
+
+    /**
+     * 打开覆盖层
+     * 加载动画以及改变覆盖层上的内容
+     * @param isCheckSuccess true为录入成功标志
+     */
+    public void appearShade(boolean isCheckSuccess){
+        IS_DO_ACTIO = true;
+        if (loadingView==null){
+            operaTV.setVisibility(View.INVISIBLE);
+            loadingView =new LoadingView(this);
+            loadingView.startAppearAnimation();
+            layout.addView(loadingView);
+        }
+        else{
+
+            loadingView.removeAllViews();
+            LayoutInflater flater = LayoutInflater.from(this);
+
+            view = flater.inflate(R.layout.view_checkreader_result, null);
+            TextView bigTitle =(TextView)view.findViewById(R.id.bigTitle);
+            TextView readerNameTv = (TextView)view.findViewById(R.id.readerName);
+            TextView readerNumTv = (TextView)view.findViewById(R.id.readerNum);
+            Button loanBtn =(Button)view.findViewById(R.id.loanBtn);
+            Button recheckBtn =(Button)view.findViewById(R.id.recheckBtn);
+
+            if (isCheckSuccess){
+                bigTitle.setText("录入成功");
+                readerNameTv.setText("姓名: " + readerName);
+                readerNumTv.setText("读者证号: " + readerId);
+                App.readerId= readerId;
+                App.readerName=readerName;
+
+                if (readerAction== Constant.LOAN_ACTION)
+                    loanBtn.setText("借书");
+                else if (readerAction==Constant.RETURN_ACTION)
+                    loanBtn.setText("还书");
+                else if (readerAction==Constant.RELOAN_ACTION)
+                    loanBtn.setText("续借");
+
+                loanBtn.setOnClickListener(this);
+
+            }else{
+                bigTitle.setText("录入失败");
+                loanBtn.setVisibility(View.INVISIBLE);
+            }
+            recheckBtn.setOnClickListener(this);
+
+            loadingView.refreshView(view);
+        }
+
+    }
+
+    /**
+     * 关闭覆盖层
+     */
+    public void disappearShade(){
+
+        loadingView.startDisappearAnimation();
+        loadingView.getDisappearAnimation().setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                layout.removeView(loadingView);
+                loadingView = null;
+                operaTV.setVisibility(View.VISIBLE);
+                IS_DO_ACTIO = false;
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+
+            }
+        });
+    }
+
+    /**
+     * 跳转页面
+     * @param activityClass 目标页面Class
+     */
+    public void startActivity(Class activityClass){
+        Intent intent = new Intent();
+        intent.setClass(this, activityClass);
+        startActivity(intent);
+    }
+
+}

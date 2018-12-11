@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    >
+
+    <include layout="@layout/activity_title" />
+    <RelativeLayout
+        android:layout_below="@+id/ly_main_tab_bottom"
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/complete64px"/>
+            <TextView
+                android:id="@+id/title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:text="续借完成"
+                android:textColor="#999999"
+                android:textSize="20dp"
+                android:background="#ffffff"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <com.tc.nfc.app.view.AnimatedExpandableListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout"
+        android:divider="#00000000"
+        android:groupIndicator ="@null">
+
+    </com.tc.nfc.app.view.AnimatedExpandableListView>
+
+</RelativeLayout>
